@@ -24,7 +24,7 @@ export default function RootLayout({
             <div className="bg-white p-8 shadow-lg rounded-lg">
               {/* Card content here */}
               {children}
-              This is a centered card.  
+              
             </div>
           </div>
         </div>
