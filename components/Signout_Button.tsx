@@ -11,12 +11,15 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { FaSignOutAlt } from "react-icons/fa";
+import { Button } from "./ui/button";
 
 const Signout_Button = () => {
   return (
     <AlertDialog>
-      <AlertDialogTrigger className="bg-white rounded-full text-xl text-[#28527A] p-2">
-        <FaSignOutAlt />
+      <AlertDialogTrigger>
+        <Button className="flex justify-center items-center text-center bg-white rounded-full w-16 h-16">
+          <FaSignOutAlt className="text-[40px] text-[#28527A] cursor-pointer" />
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
