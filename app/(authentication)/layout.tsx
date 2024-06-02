@@ -21,11 +21,8 @@ export default function RootLayout({
           <div className="col-span-6 bg-[#8AC4D0] "></div>
           <div className="col-span-6 bg-[#28527A] "></div>
           <div className="absolute inset-0 flex justify-center items-center">
-            <div className="bg-white p-8 shadow-lg rounded-lg">
-              {/* Card content here */}
-              {children}
-              
-            </div>
+            {/* Card content here */}
+            {children}
           </div>
         </div>
       </body>

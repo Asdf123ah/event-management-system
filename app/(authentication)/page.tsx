@@ -11,44 +11,52 @@ import {
 export default function Home() {
   return (
     <>
-      <Card>
-        <div className="flex items-center justify-center min-h-screen">
+      <Card className="">
+        <div className="flex items-center justify-center rounded-lg">
           <div className="max-w-4xl bg-white rounded-lg shadow-lg flex overflow-hidden">
             <div className="w-1/2">
               <Image
-                src="/login.png"
+                src="/images/login.png"
                 alt="Image description"
-                width={100}
-                height={100}
-                className="object-cover w-full h-full"
+                width={445}
+                height={690}
+                className="object-cover w-[445px] h-[690px] p-10"
               />
             </div>
-            <div className="w-1/2 p-8">
-              <h1>LOGIN</h1>
+            <div className="w-1/2 p-8 m-auto">
+              <h1 className="text-[#080067] text-5xl font-bold text-center">
+                LOGIN
+              </h1>
               <form id="cardForm" className="space-y-4">
-              <label htmlFor="">Email</label>
+                <label htmlFor="" className="text-[#080067] font-[24px]">
+                  EMAIL
+                </label>
                 <input
                   type="text"
                   id="email"
                   name="email"
-                  placeholder="Email"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                  placeholder="asasa"
+                  className="w-full h-[56px] px-4 py-2 text-white bg-[#8AC4D0] border border-gray-300 rounded-lg"
                 />
-                <label htmlFor="">Password</label>
+                <label htmlFor="" className="text-[#080067]">
+                  PASSWORD
+                </label>
                 <input
                   type="password"
                   id="password"
                   name="password"
-                  placeholder="Password"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                  placeholder="sasas"
+                  className="w-full px-4 py-2 text-white bg-[#8AC4D0] border border-gray-300 rounded-lg"
                 />
                 <button
                   type="submit"
-                  className="w-full px-4 py-2 text-white bg-[#295279] rounded-lg hover:bg-blue-700"
+                  className="w-full h-[56px] px-4 py-2 text-white text-2xl font-bold bg-[#295279] rounded-lg hover:bg-blue-700"
                 >
                   LOGIN
                 </button>
-                <p>CREATE YOUR ACCOUNT</p>
+                <p className="text-[#696969] text-lg text-center ">
+                  CREATE YOUR ACCOUNT
+                </p>
               </form>
             </div>
           </div>
