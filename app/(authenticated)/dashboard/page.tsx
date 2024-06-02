@@ -10,18 +10,20 @@ import {
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { FaInfo, FaSignOutAlt } from "react-icons/fa";
+import Link from "next/link";
+import Signout_Button from "@/components/Signout_Button";
 
 export default function dashboard_page() {
   return (
     <Card className="bg-[#28527A]">
       <CardHeader className="flex flex-col justify-center items-center">
         <CardTitle className="w-full flex justify-end space-x-2">
-          <Button className="rounded-full text-xl text-[#28527A] bg-white">
-            <FaInfo />
-          </Button>
-          <Button className="rounded-full text-xl text-[#28527A] bg-white">
-            <FaSignOutAlt />
-          </Button>
+          <Link href={"/dashboard/about-team"}>
+            <button className="rounded-full text-xl text-[#28527A] bg-white p-2">
+              <FaInfo />
+            </button>
+          </Link>
+          <Signout_Button />
         </CardTitle>
       </CardHeader>
       <CardContent className="grid grid-cols-2">
