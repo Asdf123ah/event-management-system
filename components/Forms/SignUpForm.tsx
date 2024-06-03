@@ -10,6 +10,7 @@ import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 import { FaSpinner } from "react-icons/fa";
 import { createUser } from "@/lib/actions";
+import Link from "next/link";
 
 const SignUpForm = () => {
   const { toast } = useToast();
@@ -118,6 +119,12 @@ const SignUpForm = () => {
           </Button>
         </div>
       </form>
+      <Link
+        href="/"
+        className="text-[#696969] text-lg font-bold text-center "
+      >
+        BACK TO LOGIN
+      </Link>
       {/*    <DevTool control={control} />  */}
     </>
   );
