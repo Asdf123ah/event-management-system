@@ -1,7 +1,20 @@
 {
-    
-
-
-
-
+  "users": [
+    {
+      "id": "8982",
+      "name": "Test",
+      "email": "Test@test.com",
+      "password": "Testtest1!",
+      "confirmPassword": "Testtest1!"
+    }
+  ],
+  "events": [
+    {
+      "event": "Event 1",
+      "venue": "Venue 1",
+      "date": "06/02/2024",
+      "time": "12:00pm",
+      "price": "1,000"
+    }
+  ]
 }
