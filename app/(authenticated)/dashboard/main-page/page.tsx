@@ -20,7 +20,14 @@ import { IoArrowBackCircleSharp } from "react-icons/io5";
 
 async function getData(): Promise<Payment[]> {
   // Fetch data from your API here.
-  return [
+
+  const usersResponse = await fetch("http://localhost:5000/events");
+  if (!usersResponse.ok) {
+    throw new Error("Failed to fetch events");
+  }
+  const users = await usersResponse.json();
+  return users;
+  /* return [
     {
       event: "Event 1",
       venue: "Venue 1",
@@ -64,7 +71,7 @@ async function getData(): Promise<Payment[]> {
       price: "1,200",
     },
     // ...
-  ];
+  ]; */
 }
 
 export default function Page() {
@@ -92,7 +99,7 @@ export default function Page() {
     <Card className="bg-[#28527A]">
       <CardContent className="grid grid-cols-2">
         <div className="absolute mt-4 ml-8">
-          <IoArrowBackCircleSharp className="text-[80px] text-[#ffffff] cursor-pointer "/>
+          <IoArrowBackCircleSharp className="text-[80px] text-[#ffffff] cursor-pointer " />
         </div>
         <div className="flex flex-col justify-center items-center col-span-1 space-y-4">
           <h1 className="text-white text-[36px] font-bold mt-8">EVENTS</h1>
