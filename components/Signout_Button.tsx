@@ -16,10 +16,8 @@ import { Button } from "./ui/button";
 const Signout_Button = () => {
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
-        <Button className="flex justify-center items-center text-center bg-white rounded-full w-16 h-16">
-          <FaSignOutAlt className="text-[40px] text-[#28527A] cursor-pointer" />
-        </Button>
+      <AlertDialogTrigger className="flex justify-center items-center text-center bg-white rounded-full w-16 h-16">
+        <FaSignOutAlt className="text-[40px] text-[#28527A] cursor-pointer" />
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
