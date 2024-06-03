@@ -8,6 +8,7 @@ import {
   CardDescription,
   CardFooter,
 } from "@/components/ui/card";
+import SignUpForm from "@/components/Forms/SignUpForm";
 
 export default function signup_page() {
   return (
@@ -28,7 +29,7 @@ export default function signup_page() {
               <h1 className="text-[#080067] text-5xl font-bold text-center mb-8">
                 SIGNUP
               </h1>
-              <form id="cardForm" className="space-y-6">
+              {/* <form id="cardForm" className="space-y-6">
                 <div>
                   <label
                     htmlFor="fullName"
@@ -91,7 +92,8 @@ export default function signup_page() {
                 >
                   SIGNUP
                 </button>
-              </form>
+              </form> */}
+              <SignUpForm />
             </div>
           </div>
         </div>

@@ -7,6 +7,8 @@ import {
   CardDescription,
   CardFooter,
 } from "@/components/ui/card";
+import LoginForm from "@/components/Forms/LoginForm";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -27,7 +29,7 @@ export default function Home() {
               <h1 className="text-[#080067] text-5xl font-bold text-center mb-8">
                 LOGIN
               </h1>
-              <form id="cardForm" className="space-y-6">
+              {/*  <form id="cardForm" className="space-y-6">
                 <div>
                   <label
                     htmlFor="email"
@@ -62,10 +64,16 @@ export default function Home() {
                 >
                   LOGIN
                 </button>
-                <p className="text-[#696969] text-lg font-bold text-center ">
-                  CREATE YOUR ACCOUNT
-                </p>
-              </form>
+               
+              </form> */}
+
+              <LoginForm />
+              <Link
+                href="/signup"
+                className="text-[#696969] text-lg font-bold text-center "
+              >
+                CREATE YOUR ACCOUNT
+              </Link>
             </div>
           </div>
         </div>

@@ -39,10 +39,10 @@ export default function dashboard_page() {
             <h1 className="text-[54px] font-bold">WELCOME,</h1>
             <h1 className="text-[101px] font-bold -mt-10">USERNAME DITO</h1>
             <Button className="w-[377px] h-[65px] bg-white text-black font-bold text-[28px] rounded-[24px] mt-8 mb-4">
-              BUY EVENT TICKET
+              <Link href={"/dashboard/main-page"}>BUY EVENT TICKET</Link>
             </Button>
             <Button className="w-[377px] h-[65px] bg-white text-black font-bold text-[28px] rounded-[24px]">
-              SEE BRGY M.S.
+              <Link href={"/dashboard/secondary-page"}>SEE BRGY M.S.</Link>
             </Button>
           </div>
 
