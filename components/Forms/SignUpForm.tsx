@@ -49,27 +49,27 @@ const SignUpForm = () => {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Label
-          className="block text-[#080067] text-lg font-bold mb-0"
+          className="block text-[#080067] text-[21px] font-bold mb-0"
           htmlFor="name"
         >
-          Full Name
+          FULL NAME
         </Label>
         <Input
           {...register("name")}
-          className="w-[437px] h-[56px] px-4 py-2 text-black bg-[#8AC4D0] border border-gray-300 rounded-lg mb-0"
+          className="w-[437px] h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-6"
           id="name"
-          placeholder="Enter your Full Name"
+          placeholder="Enter your full name"
           autoComplete="additional-name"
         />
         <Label
           className="block text-[#080067] text-lg font-bold mb-0"
           htmlFor="email"
         >
-          Email
+          EMAIL
         </Label>
         <Input
           {...register("email")}
-          className="w-[437px] h-[56px] px-4 py-2 text-black bg-[#8AC4D0] border border-gray-300 rounded-lg mb-0"
+          className="w-[437px] h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-6"
           id="email"
           placeholder="Enter your email"
           autoComplete="email"
@@ -78,11 +78,11 @@ const SignUpForm = () => {
           className="block text-[#080067] text-lg font-bold mb-0"
           htmlFor="password"
         >
-          Password
+          PASSWORD
         </Label>
         <Input
           {...register("password", { required: true })}
-          className="w-[437px] h-[56px] px-4 py-2 text-black bg-[#8AC4D0] border border-gray-300 rounded-lg mb-0"
+          className="w-[437px] h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-6"
           id="password"
           type="password"
           placeholder="Enter your password"
@@ -92,30 +92,31 @@ const SignUpForm = () => {
           className="block text-[#080067] text-lg font-bold mb-0"
           htmlFor="confirmPassword"
         >
-          Confirm Password
+          CONFIRM PASSWORD
         </Label>
         <Input
           {...register("confirmPassword", { required: true })}
-          className="w-[437px] h-[56px] px-4 py-2 text-black bg-[#8AC4D0] border border-gray-300 rounded-lg mb-0"
+          className="w-[437px] h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-12"
           id="confirmPassword"
           type="password"
           placeholder="Re-enter your password"
         />
-
-        <Button
-          disabled={isSubmitting}
-          type="submit"
-          className="ml-8 w-[365px] h-[56px] mx-auto text-white text-2xl font-bold bg-[#295279] rounded-lg hover:bg-blue-700 mb-0"
-        >
-          {isSubmitting ? (
-            <h1 className="flex flex-row items-center justify-center space-x-2 text-lg">
-              <FaSpinner className="mr-4 animate-spin" />
-              {"Creating..."}
-            </h1>
-          ) : (
-            <h1 className="flex flex-row space-x-2 text-lg">Sign Up</h1>
-          )}
-        </Button>
+        <div className="flex">
+          <Button
+            disabled={isSubmitting}
+            type="submit"
+            className="ml-8 w-[365px] h-[56px] mx-auto text-white text-[21px] font-bold bg-[#295279] rounded-lg hover:bg-blue-700 mb-0"
+          >
+            {isSubmitting ? (
+              <h1 className="flex flex-row items-center justify-center space-x-2 text-lg">
+                <FaSpinner className="mr-4 animate-spin" />
+                {"Creating..."}
+              </h1>
+            ) : (
+              <h1 className="flex flex-row space-x-2 text-lg">SIGN UP</h1>
+            )}
+          </Button>
+        </div>
       </form>
       {/*    <DevTool control={control} />  */}
     </>

@@ -26,7 +26,7 @@ export default function signup_page() {
               />
             </div>
             <div className="w-1/2 p-0 m-auto flex flex-col items-center">
-              <h1 className="text-[#080067] text-5xl font-bold text-center mb-8">
+              <h1 className="text-[#080067] text-[47px] font-bold text-center mb-16">
                 SIGNUP
               </h1>
               {/* <form id="cardForm" className="space-y-6">
