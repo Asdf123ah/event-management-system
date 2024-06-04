@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -17,67 +16,23 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
+import { FaSearch } from "react-icons/fa";
 
 async function getData(): Promise<Payment[]> {
-  // Fetch data from your API here.
-
   const usersResponse = await fetch("http://localhost:5000/events");
   if (!usersResponse.ok) {
     throw new Error("Failed to fetch events");
   }
   const users = await usersResponse.json();
   return users;
-  /* return [
-    {
-      event: "Event 1",
-      venue: "Venue 1",
-      date: "06/02/2024",
-      time: "12:00pm",
-      price: "1,000",
-    },
-    {
-      event: "Event 2",
-      venue: "Venue 2",
-      date: "06/03/2024",
-      time: "12:00pm",
-      price: "1,100",
-    },
-    {
-      event: "Event 3",
-      venue: "Venue 3",
-      date: "06/04/2024",
-      time: "12:00pm",
-      price: "1,200",
-    },
-    {
-      event: "Event 4",
-      venue: "Venue 4",
-      date: "06/04/2024",
-      time: "12:00pm",
-      price: "1,200",
-    },
-    {
-      event: "Event 5",
-      venue: "Venue 5",
-      date: "06/04/2024",
-      time: "12:00pm",
-      price: "1,200",
-    },
-    {
-      event: "Event 6",
-      venue: "Venue 6",
-      date: "06/04/2024",
-      time: "12:00pm",
-      price: "1,200",
-    },
-    // ...
-  ]; */
 }
 
 export default function Page() {
   const [quantity, setQuantity] = useState(1);
   const [isHosting, setIsHosting] = useState<"Host" | "Buyer">("Host");
   const [data, setData] = useState<Payment[]>([]);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -99,6 +54,28 @@ export default function Page() {
   const handleRoleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsHosting(event.target.value as "Host" | "Buyer");
   };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (!file.type.startsWith("image/")) {
+        setError("Please select an image file.");
+      } else {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          setSelectedImage(event.target?.result as string);
+          setError(null);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  };
+
+  const removeImage = () => {
+    setSelectedImage(null);
+    setError(null);
+  };
+
   return (
     <Card className="bg-[#28527A]">
       <CardHeader className="flex flex-row items-center justify-center space-x-2">
@@ -132,48 +109,50 @@ export default function Page() {
         </div>
         <div className="flex flex-col justify-center items-center space-y-4">
           <h1 className="text-white text-[36px] font-bold mt-8">EVENTS</h1>
+          <div className="relative w-[90%]">
+            <Input className="w-full" />
+            <FaSearch className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-800" />
+          </div>
           <DataTable columns={columns} data={data} />
           <div className="flex flex-row w-[90%]">
-            <Label className="text-white text-[20px] mr-[9%]">EVENT</Label>
+            <Label className="text-white text-[20px] mr-[4%]">EVENT</Label>
             <Input></Input>
           </div>
 
           <div className="flex flex-row w-full">
             {/* First half */}
-            <div className="w-1/2">
-              <div className="flex flex-col gap-4">
-                <div className="flex flex-row w-[90%]">
-                  <Label className="text-white text-[20px] mr-[9%]">
+            <div className="w-2/3">
+              <div className="flex flex-col gap-4 ml-[7%]">
+                <div className="flex flex-row">
+                  <Label className="text-white text-[20px] mr-[7%]">
                     VENUE
                   </Label>
                   <Input></Input>
                 </div>
-                <div className="flex flex-row w-[90%]">
-                  <Label className="text-white text-[20px] mr-[11%]">
+                <div className="flex flex-row">
+                  <Label className="text-white text-[20px] mr-[10%]">
                     DATE
                   </Label>
                   <Input></Input>
                 </div>
-                <div className="flex flex-row w-[90%]">
-                  <Label className="text-white text-[20px] mr-[11%]">
+                <div className="flex flex-row">
+                  <Label className="text-white text-[20px] mr-[10%]">
                     TIME
                   </Label>
                   <Input></Input>
                 </div>
-                <div className="flex flex-row w-[90%]">
-                  <Label className="text-white text-[20px] mr-[10%]">
+                <div className="flex flex-row">
+                  <Label className="text-white text-[20px] mr-[8%]">
                     PRICE
                   </Label>
                   <Input></Input>
                 </div>
-                <div className="flex flex-row w-[90%]">
-                  <Label className="text-white text-[20px] mr-[10%]">
-                    HOST
-                  </Label>
+                <div className="flex flex-row">
+                  <Label className="text-white text-[20px] mr-[8%]">HOST</Label>
                   <Input></Input>
                 </div>
                 <div className="flex flex-row w-[90%] items-center">
-                  <Label className="text-white text-[20px] mr-[4%] mb-4">
+                  <Label className="text-white text-[20px] mr-[12%] mb-4">
                     QUANTITY
                   </Label>
                   <div
@@ -199,22 +178,40 @@ export default function Page() {
             </div>
 
             {/* Second half */}
-            <div className="w-1/2">
+            <div className="w-1/3 mx-4">
               <div className="flex flex-col justify-center items-center">
-                <Image
-                  src="/images/Rectangle 25.png"
-                  alt="Event Image"
-                  width={280}
-                  height={280}
+                <input
+                  type="file"
+                  id="imageUpload"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleImageChange}
                 />
-                <Button className="w-[280px] bg-[#8AC4D0] text-[#0C092E] text-[21px] font-bold rounded-[25px] mb-4">
+                <label
+                  htmlFor="imageUpload"
+                  className="w-56 h-52 mb-4 cursor-pointer relative"
+                >
+                  <Image
+                    width={900}
+                    height={900}
+                    src={selectedImage || "/images/Rectangle 27.png"}
+                    alt="Event Image"
+                    className="w-full h-full object-cover"
+                  />
+                  {error && (
+                    <div className="absolute bottom-0 left-0 bg-red-500 text-white text-xs px-2 py-1 rounded">
+                      {error}
+                    </div>
+                  )}
+                </label>
+                <Button className="w-[241px] bg-[#8AC4D0] text-[#0C092E] text-[21px] font-bold rounded-[25px] mb-4">
                   PURCHASE
                 </Button>
-                <div className="flex flex-row justify-around">
-                  <Button className="w-[130px] h-[33px] bg-[#51B94F] text-[18px] text-[#0C092E] font-bold rounded-[25px]">
+                <div className="flex flex-row justify-evenly w-full">
+                  <Button className="w-[110px] h-[33px] bg-[#51B94F] text-[18px] text-[#0C092E] font-bold rounded-[25px]">
                     UPDATE
                   </Button>
-                  <Button className="w-[130px] h-[33px] bg-[#D65A5A] text-[18px] text-[#0C092E] font-bold rounded-[25px]">
+                  <Button className="w-[110px] h-[33px] bg-[#D65A5A] text-[18px] text-[#0C092E] font-bold rounded-[25px]">
                     REMOVE
                   </Button>
                 </div>
