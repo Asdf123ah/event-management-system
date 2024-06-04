@@ -28,12 +28,14 @@ export async function createUser(data: SignUpFormFields) {
       return "Email is already registered.";
     }
     // If email is unique, proceed to add the new user
+    const { confirmPassword, ...userData } = data;
+
     const response = await fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(userData),
     });
 
     if (!response.ok) {
@@ -71,4 +73,8 @@ export async function signInUser(data: LoginFormFields) {
   } catch (error) {
     console.log(error);
   }
+}
+
+export async function signOutUser() {
+  cookies().delete("user");
 }

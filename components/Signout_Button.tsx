@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   AlertDialog,
@@ -12,8 +13,11 @@ import {
 } from "@/components/ui/alert-dialog";
 import { FaSignOutAlt } from "react-icons/fa";
 import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
+import { signOutUser } from "@/lib/actions";
 
 const Signout_Button = () => {
+  const router = useRouter();
   return (
     <AlertDialog>
       <AlertDialogTrigger className="flex justify-center items-center text-center bg-white rounded-full w-16 h-16">
@@ -28,7 +32,14 @@ const Signout_Button = () => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Yes</AlertDialogAction>
+          <AlertDialogAction
+            onClick={async () => {
+              router.push("/");
+              await signOutUser();
+            }}
+          >
+            Yes
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

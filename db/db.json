@@ -1,11 +1,10 @@
 {
   "users": [
     {
-      "id": "8982",
+      "id": "b14f",
       "name": "Test",
-      "email": "Test@test.com",
-      "password": "Testtest1!",
-      "confirmPassword": "Testtest1!"
+      "email": "test@test.com",
+      "password": "Testtest1!"
     }
   ],
   "events": [

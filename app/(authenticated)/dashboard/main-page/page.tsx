@@ -76,6 +76,7 @@ async function getData(): Promise<Payment[]> {
 
 export default function Page() {
   const [quantity, setQuantity] = useState(1);
+  const [isHosting, setIsHosting] = useState<"Host" | "Buyer">("Host");
   const [data, setData] = useState<Payment[]>([]);
 
   useEffect(() => {
@@ -95,11 +96,39 @@ export default function Page() {
     setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
   };
 
+  const handleRoleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsHosting(event.target.value as "Host" | "Buyer");
+  };
   return (
     <Card className="bg-[#28527A]">
+      <CardHeader className="flex flex-row items-center justify-center space-x-2">
+        <div className="flex flex-row w-auto justify-center items-center space-x-2">
+          <Label className="w-full">Host an Event</Label>
+          <Input
+            type="radio"
+            name="role"
+            value="Host"
+            checked={isHosting === "Host"}
+            onChange={handleRoleChange}
+          />
+        </div>
+        <div className="flex flex-row w-auto justify-center items-center space-x-2">
+          <Label>Buy a Ticket</Label>
+          <Input
+            type="radio"
+            name="role"
+            value="Buyer"
+            checked={isHosting === "Buyer"}
+            onChange={handleRoleChange}
+          />
+        </div>
+      </CardHeader>
+
       <CardContent className="grid grid-cols-2">
         <div className="absolute mt-4 ml-8">
-          <IoArrowBackCircleSharp className="text-[80px] text-[#ffffff] cursor-pointer " />
+          <Link href="/dashboard">
+            <IoArrowBackCircleSharp className="text-[80px] text-[#ffffff] cursor-pointer " />
+          </Link>
         </div>
         <div className="flex flex-col justify-center items-center space-y-4">
           <h1 className="text-white text-[36px] font-bold mt-8">EVENTS</h1>
@@ -193,10 +222,12 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-center col-span-1 space-y-4">
-          <h1 className="text-white text-[36px] font-bold mt-8">PURCHASED</h1>
-          <DataTable columns={columns} data={data} />
-        </div>
+        {isHosting === "Buyer" && (
+          <div className="flex flex-col items-center col-span-1 space-y-4">
+            <h1 className="text-white text-[36px] font-bold mt-8">PURCHASED</h1>
+            <DataTable columns={columns} data={data} />
+          </div>
+        )}
       </CardContent>
     </Card>
   );

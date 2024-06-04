@@ -24,25 +24,35 @@ const SignUpForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<SignUpFormFields>({ resolver: zodResolver(SignUpFormSchema) });
 
+  const passCheck = watch("confirmPassword");
+
   const onSubmit: SubmitHandler<SignUpFormFields> = async (data) => {
     console.log(data);
-    const signUpUser: any = await createUser(data);
+    if (data.password === passCheck) {
+      const signUpUser: any = await createUser(data);
 
-    if (signUpUser) {
-      if (signUpUser === "Email is already registered.") {
-        toast({
-          title: "Account Creation Failed",
-          description: "Email is already taken.",
-          variant: "destructive",
-        });
-      } else {
-        toast({
-          className: "bg-green-600 text-neutral-100",
-          title: "Event Management System",
-          description: "Successfully Created the User.",
-        });
-        console.log(signUpUser);
+      if (signUpUser) {
+        if (signUpUser === "Email is already registered.") {
+          toast({
+            title: "Account Creation Failed",
+            description: "Email is already taken.",
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            className: "bg-green-600 text-neutral-100",
+            title: "Event Management System",
+            description: "Successfully Created the User.",
+          });
+          console.log(signUpUser);
+        }
       }
+    } else {
+      toast({
+        title: "Account Creation Failed",
+        description: "Password Mismatch.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -119,10 +129,7 @@ const SignUpForm = () => {
           </Button>
         </div>
       </form>
-      <Link
-        href="/"
-        className="text-[#696969] text-lg font-bold text-center "
-      >
+      <Link href="/" className="text-[#696969] text-lg font-bold text-center ">
         BACK TO LOGIN
       </Link>
       {/*    <DevTool control={control} />  */}
