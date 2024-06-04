@@ -10,6 +10,9 @@ export type Payment = {
   date: string
   time: string
   price: string
+  host: string
+  image: string
+
 }
 
 export const columns: ColumnDef<Payment>[] = [
@@ -32,5 +35,13 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "price",
     header: "Price",
+  },
+  {
+    accessorKey: "host",
+    header: "Host",
+  },
+  {
+    accessorKey: "image",
+    header: "Image",
   },
 ]
