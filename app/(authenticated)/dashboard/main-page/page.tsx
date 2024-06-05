@@ -152,7 +152,7 @@ export default function Page() {
         {isHosting === "Host" ? (
           <div className="grid grid-cols-1">
             <div className="col-span-1">
-              <div className="flex flex-col justify-center items-center py-4">
+              <div className="flex flex-col justify-center items-center gap-4 py-4">
                 <DataTable
                   columns={columns}
                   data={data}
@@ -284,7 +284,6 @@ export default function Page() {
               </div>
               <div className="flex flex-col justify-center items-center gap-4">
                 {" "}
-                {/* Center the DataTable_Buyer horizontally */}
                 <DataTable_Buyer columns={columns_buyer} data={ticketBought} />
               </div>
             </div>
