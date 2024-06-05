@@ -26,6 +26,9 @@ import {
   columns_ListItem,
   itemDetails,
 } from "@/components/table/Secondary/columns";
+import { DataTable_BorrowItem } from "@/components/table/Secondary/Borrow-an-item/data-table";
+import { columns_BorrowItem } from "@/components/table/Secondary/Borrow-an-item/columns";
+import { DataTable_BorrowedItem } from "@/components/table/Secondary/BorrowedItems/data-table";
 
 async function getData(): Promise<itemDetails[]> {
   const usersResponse = await fetch("http://localhost:5000/brgy-items");
@@ -36,8 +39,8 @@ async function getData(): Promise<itemDetails[]> {
   return users;
 }
 
-async function getData_purchased(): Promise<itemDetails[]> {
-  const usersResponse = await fetch("http://localhost:5000/events-purchased");
+async function getData_borrowed(): Promise<itemDetails[]> {
+  const usersResponse = await fetch("http://localhost:5000/item-borrowed");
   if (!usersResponse.ok) {
     throw new Error("Failed to fetch events");
   }
@@ -50,7 +53,7 @@ export default function Page() {
   const [roles, setRoles] = useState<"Host" | "Buyer" | "List">("Host");
   const [data, setData] = useState<itemDetails[]>([]);
 
-  const [ticketBought, setTicketBought] = useState<itemDetails[]>([]);
+  const [itemBorrowed, setItemBorrowed] = useState<itemDetails[]>([]);
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -70,8 +73,8 @@ export default function Page() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getData_purchased();
-      setTicketBought(result);
+      const result = await getData_borrowed();
+      setItemBorrowed(result);
     };
 
     fetchData();
@@ -165,7 +168,7 @@ export default function Page() {
             <h1 className="text-white text-[36px] font-bold">EVENTS</h1>
             {roles === "Buyer" && (
               <h1 className="text-white text-[36px] font-bold ml-[45%]">
-                PURCHASED
+                BORROWED
               </h1>
             )}
           </div>
@@ -195,8 +198,20 @@ export default function Page() {
         ) : (
           <div className="flex flex-col items-center col-span-1 space-y-0">
             <div className="grid grid-cols-2">
-              <div className="flex flex-col justify-center items-center gap-4"></div>
-              <div className="flex flex-col justify-center items-center gap-4"></div>
+              <div className="flex flex-col justify-center items-center gap-4">
+                <DataTable_ListItem
+                  columns={columns_ListItem}
+                  data={data}
+                  setSelectedRow={setSelectedRow}
+                />
+              </div>
+              <div className="flex flex-col justify-center items-center gap-4">
+                <DataTable_BorrowedItem
+                  data={itemBorrowed}
+                  columns={columns_BorrowItem}
+                  setSelectedRow={setSelectedRow}
+                />
+              </div>
             </div>
             {selectedRow && (
               <>

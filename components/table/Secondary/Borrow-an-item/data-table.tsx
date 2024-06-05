@@ -31,7 +31,7 @@ interface DataTableProps<TData, TValue> {
   setSelectedRow: any;
 }
 
-export function DataTable_ListItem<TData, TValue>({
+export function DataTable_BorrowItem<TData, TValue>({
   columns,
   data,
   setSelectedRow,
@@ -67,10 +67,10 @@ export function DataTable_ListItem<TData, TValue>({
           <Input
             placeholder="Search event..."
             value={
-              (table.getColumn("item")?.getFilterValue() as string) ?? ""
+              (table.getColumn("id")?.getFilterValue() as string) ?? ""
             }
             onChange={(event) =>
-              table.getColumn("item")?.setFilterValue(event.target.value)
+              table.getColumn("id")?.setFilterValue(event.target.value)
             }
             className="w-full"
           />
