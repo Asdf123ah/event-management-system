@@ -33,6 +33,31 @@
       "price": 1234,
       "imagePath": "/images/uploaded/iconcroppped.png",
       "host": "Test"
+    },
+    {
+      "id": "ce92",
+      "eventName": "asdzxc",
+      "venue": "qweasdzxc",
+      "date": "asdzxc",
+      "time": "asdzxc",
+      "price": 12345,
+      "imagePath": "/images/uploaded/Screenshot 2024-02-17 233450.png",
+      "host": "Test"
+    }
+  ],
+  "events-purchased": [
+    {
+      "id": "d278",
+      "eventName": "asdzxc",
+      "venue": "qweasdzxc",
+      "date": "asdzxc",
+      "time": "asdzxc",
+      "price": 12345,
+      "imageFile": "/images/uploaded/Screenshot 2024-02-17 233450.png",
+      "quantity": 2,
+      "buyer": "Test",
+      "totalPrice": 24690,
+      "host": "Test"
     }
   ]
 }

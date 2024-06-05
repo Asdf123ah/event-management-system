@@ -1,5 +1,6 @@
 "use server";
 import {
+  BuyerFormFields,
   HostFormFields,
   HostFormSchema,
   LoginFormFields,
@@ -123,4 +124,27 @@ export async function hostEvent(data: HostFormFields) {
   } catch (error) {
     console.log(error);
   }
+}
+
+export async function buyTicket(data: BuyerFormFields, host: string) {
+  const getCookie: any = await getUserFromCookie();
+  /* console.log(test);
+    console.log(JSON.stringify(test)); */
+
+  const cookieObject = JSON.parse(getCookie.value);
+
+  const buyer = cookieObject.name;
+
+  const { price, quantity } = data;
+
+  const totalPrice = price * quantity;
+
+  const response = await fetch("http://localhost:5000/events-purchased", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ ...data, buyer, totalPrice, host }),
+  });
+  console.log(response);
 }

@@ -35,3 +35,9 @@ export const HostFormSchema = z.object({
 });
 
 export type HostFormFields = z.infer<typeof HostFormSchema>;
+
+export const BuyerFormSchema = HostFormSchema.extend({
+  quantity: z.number().min(1),
+});
+
+export type BuyerFormFields = z.infer<typeof BuyerFormSchema>;
