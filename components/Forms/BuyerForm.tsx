@@ -97,7 +97,7 @@ const BuyerForm = ({ values, onFormSubmit }: any) => {
     const objToDB = { ...eventData, imagePath };
     console.log(objToDB); */
 
-    const buyEventSubmit: any = await buyTicket(data, values.host);
+    const buyEventSubmit: any = await buyTicket(data, values.host, values);
 
     if (buyEventSubmit === "Success") {
       toast({
@@ -107,6 +107,12 @@ const BuyerForm = ({ values, onFormSubmit }: any) => {
       });
       onFormSubmit();
       /* window.location.reload(); */
+    } else if (buyEventSubmit === "Out of Stock") {
+      toast({
+        variant: "destructive",
+        title: "Event Management System",
+        description: "Ticket Buying Failed - Out of Stocks",
+      });
     } else {
       toast({
         variant: "destructive",
@@ -256,7 +262,7 @@ const BuyerForm = ({ values, onFormSubmit }: any) => {
               </Button>
             </div>
 
-           {/*  <DevTool control={control} /> */}
+            {/*  <DevTool control={control} /> */}
           </div>
         </div>
       </form>

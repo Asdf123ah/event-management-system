@@ -154,30 +154,60 @@ export async function updateEvent(data: any, pastEventDetails: any) {
   }
 }
 
-export async function buyTicket(data: BuyerFormFields, host: string) {
-  const getCookie: any = await getUserFromCookie();
-  /* console.log(test);
-    console.log(JSON.stringify(test)); */
+export async function buyTicket(
+  data: BuyerFormFields,
+  host: string,
+  values: any
+) {
+  try {
+    const getCookie: any = await getUserFromCookie();
+    const cookieObject = JSON.parse(getCookie.value);
+    const buyer = cookieObject.name;
 
-  const cookieObject = JSON.parse(getCookie.value);
+    const { price, quantity } = data;
+    const totalPrice = price * quantity;
 
-  const buyer = cookieObject.name;
+    // Update available quantity
+    const newStocks = values.quantityAvailable - quantity;
+    if (newStocks < 0) {
+      return "Out of Stock";
+    }
+    const updatedEvent = { ...values, quantityAvailable: newStocks };
 
-  const { price, quantity } = data;
+    const url = `http://localhost:5000/events/${encodeURIComponent(values.id)}`;
 
-  const totalPrice = price * quantity;
+    // POST request to add purchased event
+    const purchaseResponse = await fetch(
+      "http://localhost:5000/events-purchased",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...data, buyer, totalPrice, host }),
+      }
+    );
 
-  const response = await fetch("http://localhost:5000/events-purchased", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ ...data, buyer, totalPrice, host }),
-  });
-  console.log(response);
-  if (response.ok) {
+    if (!purchaseResponse.ok) {
+      throw new Error("Failed to purchase ticket");
+    }
+
+    // PUT request to update event quantity
+    const updateResponse = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedEvent),
+    });
+
+    if (!updateResponse.ok) {
+      throw new Error("Failed to update event quantity");
+    }
+
     return "Success";
-  }else{
-    return "Fail"
+  } catch (error) {
+    console.error("Error buying ticket:", error);
+    return "Fail";
   }
 }
