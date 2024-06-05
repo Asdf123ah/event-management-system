@@ -143,16 +143,21 @@ export default function Page() {
           <Link href="/dashboard">
             <IoArrowBackCircleSharp className="text-[80px] text-[#ffffff] cursor-pointer" />
           </Link>
-          <h1 className="flex-1 text-center text-white text-[36px] font-bold -ml-20">
-            EVENTS
-          </h1>
-          <div className="w-[80px]"></div>{" "}
+          <div className="flex flex-1 items-center justify-center">
+            <h1 className="text-white text-[36px] font-bold">EVENTS</h1>
+            {isHosting === "Buyer" && (
+              <h1 className="text-white text-[36px] font-bold ml-[45%]">
+                PURCHASED
+              </h1>
+            )}
+          </div>
+          <div className="w-[80px]"></div>
           {/* Empty div to take up the same space as the icon */}
         </div>
         {isHosting === "Host" ? (
           <div className="grid grid-cols-1">
             <div className="col-span-1">
-              <div className="flex flex-col justify-center items-center space-y-4">
+              <div className="flex flex-col justify-center items-center gap-4 py-4">
                 <DataTable
                   columns={columns}
                   data={data}
@@ -170,19 +175,19 @@ export default function Page() {
             </div>
           </div>
         ) : (
-          <div className="flex flex-col items-center col-span-1 space-y-4">
+          <div className="flex flex-col items-center col-span-1 space-y-0">
             <div className="grid grid-cols-2">
-              <div>
+              <div className="flex flex-col justify-center items-center gap-4">
+                {" "}
+                {/* Center the DataTable horizontally */}
                 <DataTable
                   columns={columns}
                   data={data}
                   setSelectedRow={setSelectedRow}
                 />
               </div>
-              <div>
-                <h1 className="text-white text-[36px] font-bold mt-8">
-                  PURCHASED
-                </h1>
+              <div className="flex flex-col justify-center items-center gap-4">
+                {" "}
                 <DataTable_Buyer columns={columns_buyer} data={ticketBought} />
               </div>
             </div>
