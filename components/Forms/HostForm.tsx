@@ -61,16 +61,29 @@ const HostForm = () => {
 
     if (res.ok) {
       const response = await res.json();
-      setImagePath(`/images/uploaded/${data.imageFile[0].name}`);
-      alert("File uploaded successfully!");
-    } else {
-      alert("File upload failed!");
-    }
-    const { imageFile, ...eventData } = data;
-    const objToDB = { ...eventData, imagePath };
-    console.log(objToDB);
+      console.log(response);
+      // Set the image path from the response
+      const imagePath = `/images/uploaded/${response.fileName}`;
 
-    const hostEventSubmit = await hostEvent(objToDB);
+      // Prepare data to save in the database
+      const { imageFile, ...eventData } = data;
+      const objToDB = { ...eventData, imagePath };
+
+      // Submit the event data
+      const hostEventSubmit = await hostEvent(objToDB);
+      toast({
+        title: "Event Management System",
+        description: "Event created successfully.",
+        className: "bg-green-600 text-neutral-100",
+      });
+    } else {
+      toast({
+        variant: "destructive",
+        title: "Event Management System",
+        description: "Failed to create event.",
+      });
+    }
+
     /*  const signInUserResponse: any = await signInUser(data);
 
     if (signInUserResponse.status === 200) {
@@ -92,7 +105,7 @@ const HostForm = () => {
   };
   return (
     <div className="w-full">
-      <form onSubmit={handleSubmit(onSubmit)} className="h-[430px]">
+      <form onSubmit={handleSubmit(onSubmit)} className="h-[480px]">
         <div className="flex flex-row gap-8 ml-[8%] mt-8 w-5/6">
           {/* firsthalf */}
           <div className="flex flex-col gap-4 w-3/5">
@@ -166,8 +179,24 @@ const HostForm = () => {
               <Input
                 {...register("price", { valueAsNumber: true })}
                 className="w-full h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-0"
+                type="number"
                 id="price"
                 placeholder="Enter The Price of a ticket for the Event"
+              />
+            </div>
+
+            <div className="flex flex-row w-full">
+              <Label
+                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[8%]"
+                htmlFor="quantityAvailable"
+              >
+                Quantity of Tickets Available
+              </Label>
+              <Input
+                {...register("quantityAvailable", { valueAsNumber: true })}
+                className="w-full h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-0"
+                type="number"
+                id="quantityAvailable"
               />
             </div>
           </div>
@@ -175,8 +204,8 @@ const HostForm = () => {
           {/* secondhalf */}
           <div className="flex flex-col gap-4 w-2/5">
             <Label
-                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[8%]"
-                htmlFor="imageUpload"
+              className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[8%]"
+              htmlFor="imageUpload"
             >
               Image Upload
             </Label>
@@ -208,9 +237,9 @@ const HostForm = () => {
                   {"Adding..."}
                 </div>
               ) : (
-                <Button className="flex justify-centerw-[50%] h-[56px] text-[#0C092E] text-2xl font-bold bg-[#8AC4D0] rounded-[25px] mb-0">
+                <span className="flex justify-centerw-[50%] h-[56px] text-[#0C092E] text-2xl font-bold bg-[#8AC4D0] rounded-[25px] mb-0">
                   Add event
-                </Button>
+                </span>
               )}
             </Button>
           </div>

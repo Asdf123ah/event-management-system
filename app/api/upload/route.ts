@@ -28,5 +28,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
   await fs.promises.writeFile(filePath, buffer);
 
-  return NextResponse.json({ message: "File uploaded successfully" });
+  return NextResponse.json({
+    fileName: file.name,
+    message: "File uploaded successfully",
+  });
 }
