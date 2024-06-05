@@ -30,6 +30,8 @@ import { DataTable_BorrowItem } from "@/components/table/Secondary/Borrow-an-ite
 import { columns_BorrowItem } from "@/components/table/Secondary/Borrow-an-item/columns";
 import { DataTable_BorrowedItem } from "@/components/table/Secondary/BorrowedItems/data-table";
 
+
+
 async function getData(): Promise<itemDetails[]> {
   const usersResponse = await fetch("http://localhost:5000/brgy-items");
   if (!usersResponse.ok) {
@@ -227,3 +229,5 @@ export default function Page() {
     </Card>
   );
 }
+
+
