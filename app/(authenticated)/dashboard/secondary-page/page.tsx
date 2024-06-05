@@ -157,10 +157,10 @@ export default function Page() {
             <IoArrowBackCircleSharp className="text-[80px] text-[#ffffff] cursor-pointer" />
           </Link>
           <div className="flex flex-1 items-center justify-center">
-            <h1 className="text-white text-[36px] font-bold">EVENTS</h1>
+            <h1 className="text-white text-[36px] font-bold">BRGY ITEMS</h1>
             {roles === "Buyer" && (
-              <h1 className="text-white text-[36px] font-bold ml-[45%]">
-                BORROWED
+              <h1 className="text-white text-[36px] font-bold ml-[30%]">
+                BORROWED ITEMS
               </h1>
             )}
           </div>
