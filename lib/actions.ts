@@ -158,6 +158,7 @@ export async function updateEvent(data: any, pastEventDetails: any) {
       }
     );
     if (response.ok) {
+      return "Success"
       revalidatePath("/dashboard/main-page");
     }
   } catch (error) {

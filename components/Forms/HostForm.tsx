@@ -89,22 +89,36 @@ const HostForm = ({ values, onFormSubmit }: any) => {
       if (values) {
         console.log("updating");
         const updateEventSubmit = await updateEvent(objToDB, values);
+        if (updateEventSubmit === "Success")
+          toast({
+            title: "Event Management System",
+            description: "Event updated successfully.",
+            className: "bg-green-600 text-neutral-100",
+          });
+        else {
+          toast({
+            variant: "destructive",
+            title: "Event Management System",
+            description: "Failed to update event.",
+          });
+        }
       } else {
         const hostEventSubmit = await hostEvent(objToDB);
         if (hostEventSubmit === "Event Name is already registered.") {
           toast({
             variant: "destructive",
             title: "Event Management System",
-            description: "Failed to create event. Event Name is already registered",
+            description:
+              "Failed to create event. Event Name is already registered",
           });
         }
-        return
+        toast({
+          title: "Event Management System",
+          description: "Event created successfully.",
+          className: "bg-green-600 text-neutral-100",
+        });
       }
-      toast({
-        title: "Event Management System",
-        description: "Event created successfully.",
-        className: "bg-green-600 text-neutral-100",
-      });
+
       onFormSubmit();
     } else {
       toast({
