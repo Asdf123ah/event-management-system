@@ -91,110 +91,129 @@ const HostForm = () => {
     } */
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Label
-          className="block text-[#080067] text-[21px] font-bold mb-0"
-          htmlFor="event"
-        >
-          Event
-        </Label>
-        <Input
-          {...register("eventName")}
-          className="w-[437px] h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-16"
-          id="event"
-          placeholder="Enter The Name of the Event"
-        />
+    <div className="w-full">
+      <form onSubmit={handleSubmit(onSubmit)} className="h-[430px]">
+        <div className="flex flex-row gap-8 ml-[8%] mt-8 w-5/6">
+          {/* firsthalf */}
+          <div className="flex flex-col gap-4 w-3/5">
+            <div className="flex flex-row w-full justify-center">
+              <Label
+                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[8%]"
+                htmlFor="event"
+              >
+                Event
+              </Label>
+              <Input
+                {...register("eventName")}
+                className="w-full h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-4"
+                id="event"
+                placeholder="Enter The Name of the Event"
+              />
+            </div>
 
-        <Label
-          className="block text-[#080067] text-[21px] font-bold mb-0"
-          htmlFor="venue"
-        >
-          Venue
-        </Label>
-        <Input
-          {...register("venue")}
-          className="w-[437px] h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-16"
-          id="venue"
-          placeholder="Enter The Venue of the Event"
-        />
+            <div className="flex flex-row w-full">
+              <Label
+                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[7%]"
+                htmlFor="venue"
+              >
+                Venue
+              </Label>
+              <Input
+                {...register("venue")}
+                className="w-full h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-4"
+                id="venue"
+                placeholder="Enter The Venue of the Event"
+              />
+            </div>
 
-        <Label
-          className="block text-[#080067] text-[21px] font-bold mb-0"
-          htmlFor="date"
-        >
-          Date
-        </Label>
-        <Input
-          {...register("date")}
-          className="w-[437px] h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-16"
-          id="date"
-          placeholder="Enter The Date of the Event"
-        />
+            <div className="flex flex-row w-full">
+              <Label
+                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[9%]"
+                htmlFor="date"
+              >
+                Date
+              </Label>
+              <Input
+                {...register("date")}
+                className="w-full h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-4"
+                id="date"
+                placeholder="Enter The Date of the Event"
+              />
+            </div>
 
-        <Label
-          className="block text-[#080067] text-[21px] font-bold mb-0"
-          htmlFor="time"
-        >
-          Time
-        </Label>
-        <Input
-          {...register("time")}
-          className="w-[437px] h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-16"
-          id="time"
-          placeholder="Enter The Time of the Event"
-        />
-        <Label
-          className="block text-[#080067] text-[21px] font-bold mb-0"
-          htmlFor="price"
-        >
-          Price
-        </Label>
-        <Input
-          {...register("price", { valueAsNumber: true })}
-          className="w-[437px] h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-16"
-          id="price"
-          placeholder="Enter The Price of a ticket for the Event"
-        />
+            <div className="flex flex-row w-full">
+              <Label
+                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[8%]"
+                htmlFor="time"
+              >
+                Time
+              </Label>
+              <Input
+                {...register("time")}
+                className="w-full h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-4"
+                id="time"
+                placeholder="Enter The Time of the Event"
+              />
+            </div>
 
-        <Label
-          className="block text-[#080067] text-[21px] font-bold mb-0"
-          htmlFor="imageUpload"
-        >
-          Image Upload
-        </Label>
+            <div className="flex flex-row w-full">
+              <Label
+                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[8%]"
+                htmlFor="price"
+              >
+                Price
+              </Label>
+              <Input
+                {...register("price", { valueAsNumber: true })}
+                className="w-full h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-0"
+                id="price"
+                placeholder="Enter The Price of a ticket for the Event"
+              />
+            </div>
+          </div>
 
-        <Input
-          {...register("imageFile", { required: true })}
-          type="file"
-          id="imageUpload"
-          accept="image/*"
-          className=""
-          onChange={handleImageChange}
-        />
-        <Image
-          width={900}
-          height={900}
-          src={selectedImage || "/images/Rectangle 27.png"}
-          alt="Event Image"
-          className="w-full h-full object-cover"
-        />
+          {/* secondhalf */}
+          <div className="flex flex-col gap-4 w-2/5">
+            <Label
+                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[8%]"
+                htmlFor="imageUpload"
+            >
+              Image Upload
+            </Label>
 
-        <div className="flex">
-          <Button
-            disabled={isSubmitting}
-            type="submit"
-            className="ml-16 w-[365px] h-[56px] mx-auto text-white text-2xl font-bold bg-[#295279] rounded-lg hover:bg-blue-700 mb-0"
-          >
-            {isSubmitting ? (
-              <h1 className="flex flex-row items-center justify-center space-x-2 text-lg">
-                <FaSpinner className="mr-4 animate-spin" />
-                {"Signing in..."}
-              </h1>
-            ) : (
-              <h1 className="flex flex-row space-x-2 text-lg">SIGN IN</h1>
-            )}
-          </Button>
+            <Input
+              {...register("imageFile", { required: true })}
+              type="file"
+              id="imageUpload"
+              accept="image/*"
+              className=""
+              onChange={handleImageChange}
+            />
+            <Image
+              width={700}
+              height={700}
+              src={selectedImage || "/images/Rectangle 27.png"}
+              alt="Event Image"
+              className="w-[100%] h-[32%] object-cover"
+            />
+
+            <Button
+              disabled={isSubmitting}
+              type="submit"
+              className="flex justify-center mx-auto w-[50%] h-[56px] text-[#0C092E] text-2xl font-bold bg-[#8AC4D0] rounded-[25px] mb-0"
+            >
+              {isSubmitting ? (
+                <div className="flex items-center justify-center">
+                  <FaSpinner className="mr-4 animate-spin" />
+                  {"Adding..."}
+                </div>
+              ) : (
+                <Button className="flex justify-centerw-[50%] h-[56px] text-[#0C092E] text-2xl font-bold bg-[#8AC4D0] rounded-[25px] mb-0">
+                  Add event
+                </Button>
+              )}
+            </Button>
+          </div>
         </div>
         {/* <DevTool control={control} /> */}
       </form>

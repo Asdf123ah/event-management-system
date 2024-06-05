@@ -78,9 +78,8 @@ export default function Page() {
 
   return (
     <Card className="bg-[#28527A]">
-      <CardHeader className="flex flex-row items-center justify-center space-x-2">
-        <div className="flex flex-row w-auto justify-center items-center space-x-2">
-          <Label className="w-full">Host an Event</Label>
+      <CardHeader className="flex flex-row items-center justify-center space-x-12">
+        <div className="flex flex-row w-auto justify-center items-center">
           <Input
             type="radio"
             name="role"
@@ -88,9 +87,11 @@ export default function Page() {
             checked={isHosting === "Host"}
             onChange={handleRoleChange}
           />
+          <Label className="w-72 text-xl text-white font-bold -ml-8">
+            Host an event
+          </Label>
         </div>
-        <div className="flex flex-row w-auto justify-center items-center space-x-2">
-          <Label>Buy a Ticket</Label>
+        <div className="flex flex-row w-auto justify-center items-center">
           <Input
             type="radio"
             name="role"
@@ -98,28 +99,31 @@ export default function Page() {
             checked={isHosting === "Buyer"}
             onChange={handleRoleChange}
           />
+          <Label className="w-72 text-xl text-white font-bold -ml-8">
+            Buy a ticket
+          </Label>
         </div>
       </CardHeader>
 
       <CardContent className="">
-        <div className="mt-4 ml-8 flex">
+        <div className="flex items-center justify-between mt-0 ml-20">
           <Link href="/dashboard">
-            <IoArrowBackCircleSharp className="text-[80px] text-[#ffffff] cursor-pointer " />
+            <IoArrowBackCircleSharp className="text-[80px] text-[#ffffff] cursor-pointer" />
           </Link>
-        </div>
-        <div>
-          <h1 className="flex items-center justify-center text-white text-[36px] font-bold ">
+          <h1 className="flex-1 text-center text-white text-[36px] font-bold -ml-20">
             EVENTS
           </h1>
+          <div className="w-[80px]"></div>{" "}
+          {/* Empty div to take up the same space as the icon */}
         </div>
         {isHosting === "Host" ? (
-          <div className="grid grid-cols-2">
+          <div className="grid grid-cols-1">
             <div className="col-span-1">
               <div className="flex flex-col justify-center items-center space-y-4">
                 <DataTable columns={columns} data={data} />
               </div>
             </div>
-            <div className="col-span-1">
+            <div className="grid grid-cols-1">
               <div className=" flex flex-row w-full">
                 {/* First half */}
 

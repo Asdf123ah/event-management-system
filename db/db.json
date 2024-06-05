@@ -33,6 +33,26 @@
       "price": 1234,
       "imagePath": "/images/uploaded/iconcroppped.png",
       "host": "Test"
+    },
+    {
+      "id": "9f7a",
+      "eventName": "Event 1",
+      "venue": "Venue 1",
+      "date": "06/05/2024",
+      "time": "12:00pm",
+      "price": 150,
+      "imagePath": "",
+      "host": "Sheena"
+    },
+    {
+      "id": "0edc",
+      "eventName": "Event 2",
+      "venue": "Venue 2",
+      "date": "06/06/2024",
+      "time": "1:00pm",
+      "price": 100,
+      "imagePath": "",
+      "host": "Sheena"
     }
   ]
 }
