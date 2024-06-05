@@ -51,6 +51,10 @@ export const columns: ColumnDef<EventDetails>[] = [
     header: "Host",
   },
   {
+    accessorKey: "quantityAvailable",
+    header: "Tickets Available",
+  },
+  {
     accessorKey: "imagePath",
     header: "Image",
     cell: ({ row }) => {

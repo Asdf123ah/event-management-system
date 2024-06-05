@@ -31,6 +31,7 @@ export const HostFormSchema = z.object({
   date: z.string().min(1),
   time: z.string().min(1),
   price: z.number().min(1),
+  quantityAvailable: z.number().min(0),
   imageFile: z.any(),
 });
 

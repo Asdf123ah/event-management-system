@@ -121,6 +121,7 @@ export async function hostEvent(data: HostFormFields) {
       },
       body: JSON.stringify({ ...data, host }),
     });
+    
   } catch (error) {
     console.log(error);
   }
