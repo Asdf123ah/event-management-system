@@ -32,6 +32,8 @@ import { DataTable_BorrowedItem } from "@/components/table/Secondary/BorrowedIte
 import BorrowerForm from "@/components/Forms/Secondary/BorrowerForm";
 import { columns_BorrowedItem } from "@/components/table/Secondary/BorrowedItems/columns";
 
+
+
 async function getData(): Promise<itemDetails[]> {
   const usersResponse = await fetch("http://localhost:5000/brgy-items");
   if (!usersResponse.ok) {
@@ -217,3 +219,5 @@ export default function Page() {
     </Card>
   );
 }
+
+
