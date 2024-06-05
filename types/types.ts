@@ -48,3 +48,11 @@ export const BuyerFormSchema = z.object({
 });
 
 export type BuyerFormFields = z.infer<typeof BuyerFormSchema>;
+
+export const ListItemSchema = z.object({
+  item: z.string().min(1),
+  quantity: z.number().min(1),
+  imageFile: z.any(),
+});
+
+export type ListItemFields = z.infer<typeof ListItemSchema>;

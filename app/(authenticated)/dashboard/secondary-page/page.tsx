@@ -195,19 +195,8 @@ export default function Page() {
         ) : (
           <div className="flex flex-col items-center col-span-1 space-y-0">
             <div className="grid grid-cols-2">
-              <div className="flex flex-col justify-center items-center gap-4">
-                {" "}
-                {/* Center the DataTable horizontally */}
-                <DataTable
-                  columns={columns}
-                  data={data}
-                  setSelectedRow={setSelectedRow}
-                />
-              </div>
-              <div className="flex flex-col justify-center items-center gap-4">
-                {" "}
-                <DataTable_Buyer columns={columns_buyer} data={ticketBought} />
-              </div>
+              <div className="flex flex-col justify-center items-center gap-4"></div>
+              <div className="flex flex-col justify-center items-center gap-4"></div>
             </div>
             {selectedRow && (
               <>
