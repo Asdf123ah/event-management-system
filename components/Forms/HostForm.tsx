@@ -108,13 +108,13 @@ const HostForm = ({ values }: any) => {
   };
   return (
     <div className="w-full">
-      <form onSubmit={handleSubmit(onSubmit)} className="h-[480px]">
-        <div className="flex flex-row gap-8 ml-[8%] mt-8 w-5/6">
+      <form onSubmit={handleSubmit(onSubmit)} className="h-full">
+        <div className="flex flex-row gap-8 ml-[8%] mt-8 w-full">
           {/* firsthalf */}
-          <div className="flex flex-col gap-4 w-3/5">
+          <div className="flex flex-col gap-4 w-3/4">
             <div className="flex flex-row w-full justify-center">
               <Label
-                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[8%]"
+                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[11%]"
                 htmlFor="event"
               >
                 Event
@@ -129,7 +129,7 @@ const HostForm = ({ values }: any) => {
 
             <div className="flex flex-row w-full">
               <Label
-                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[7%]"
+                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[10%]"
                 htmlFor="venue"
               >
                 Venue
@@ -144,7 +144,7 @@ const HostForm = ({ values }: any) => {
 
             <div className="flex flex-row w-full">
               <Label
-                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[9%]"
+                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[12%]"
                 htmlFor="date"
               >
                 Date
@@ -159,7 +159,7 @@ const HostForm = ({ values }: any) => {
 
             <div className="flex flex-row w-full">
               <Label
-                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[8%]"
+                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[12%]"
                 htmlFor="time"
               >
                 Time
@@ -174,14 +174,14 @@ const HostForm = ({ values }: any) => {
 
             <div className="flex flex-row w-full">
               <Label
-                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[8%]"
+                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[12%]"
                 htmlFor="price"
               >
                 Price
               </Label>
               <Input
                 {...register("price", { valueAsNumber: true })}
-                className="w-full h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-0"
+                className="w-full h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-4"
                 type="number"
                 id="price"
                 placeholder="Enter The Price of a ticket for the Event"
@@ -190,10 +190,10 @@ const HostForm = ({ values }: any) => {
 
             <div className="flex flex-row w-full">
               <Label
-                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[8%]"
+                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[2%]"
                 htmlFor="quantityAvailable"
               >
-                Quantity of Tickets Available
+                Quantity<br/>of Tickets Available
               </Label>
               <Input
                 {...register("quantityAvailable", { valueAsNumber: true })}
@@ -205,9 +205,9 @@ const HostForm = ({ values }: any) => {
           </div>
 
           {/* secondhalf */}
-          <div className="flex flex-col gap-4 w-2/5">
+          <div className="flex flex-col gap-4 w-1/2">
             <Label
-              className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[8%]"
+              className="text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[8%]"
               htmlFor="imageUpload"
             >
               Image Upload
@@ -218,7 +218,7 @@ const HostForm = ({ values }: any) => {
               type="file"
               id="imageUpload"
               accept="image/*"
-              className=""
+              className="w-[65%]"
               onChange={handleImageChange}
             />
             <Image
@@ -226,13 +226,13 @@ const HostForm = ({ values }: any) => {
               height={700}
               src={selectedImage || "/images/Rectangle 27.png"}
               alt="Event Image"
-              className="w-[100%] h-[32%] object-cover"
+              className="w-[65%] h-[53%] max-h-[53%] max-w-[65%] object-cover"
             />
 
             <Button
               disabled={isSubmitting}
               type="submit"
-              className="flex justify-center mx-auto w-[50%] h-[56px] text-[#0C092E] text-2xl font-bold bg-[#8AC4D0] rounded-[25px] mb-0"
+              className="flex justify-center w-[40%] h-[56px] text-[#0C092E] text-2xl font-bold bg-[#8AC4D0] rounded-[25px] mb-0 ml-24"
             >
               {isSubmitting ? (
                 <div className="flex items-center justify-center">
