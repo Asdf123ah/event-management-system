@@ -1,5 +1,5 @@
 "use client";
-import { hostEvent, signInUser } from "@/lib/actions";
+import { hostEvent, signInUser, updateEvent } from "@/lib/actions";
 import { HostFormFields, HostFormSchema } from "@/types/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -12,8 +12,9 @@ import { Label } from "../ui/label";
 import { useToast } from "../ui/use-toast";
 import Image from "next/image";
 import { DevTool } from "@hookform/devtools";
+import { useEffect } from "react";
 
-const HostForm = () => {
+const HostForm = ({ values }: any) => {
   const { toast } = useToast();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
@@ -44,9 +45,22 @@ const HostForm = () => {
     handleSubmit,
     setError,
     watch,
+    setValue,
     control,
     formState: { errors, isSubmitting },
   } = useForm<HostFormFields>({ resolver: zodResolver(HostFormSchema) });
+
+  useEffect(() => {
+    if (values) {
+      setValue("eventName", values.eventName);
+      setValue("venue", values.venue);
+      setValue("date", values.date);
+      setValue("time", values.time);
+      setValue("price", values.price);
+      setValue("quantityAvailable", values.quantityAvailable);
+      /*   setSelectedImage(values.imagePath); */
+    }
+  }, [values, setValue]);
 
   const onSubmit: SubmitHandler<HostFormFields> = async (data: any) => {
     console.log(data);
@@ -69,13 +83,21 @@ const HostForm = () => {
       const { imageFile, ...eventData } = data;
       const objToDB = { ...eventData, imagePath };
 
+      console.log(values.eventName);
+
       // Submit the event data
-      const hostEventSubmit = await hostEvent(objToDB);
+      if (values) {
+        console.log("updating");
+        const updateEventSubmit = await updateEvent(objToDB, values);
+      } else {
+        const hostEventSubmit = await hostEvent(objToDB);
+      }
       toast({
         title: "Event Management System",
         description: "Event created successfully.",
         className: "bg-green-600 text-neutral-100",
       });
+      window.location.reload();
     } else {
       toast({
         variant: "destructive",
@@ -83,25 +105,6 @@ const HostForm = () => {
         description: "Failed to create event.",
       });
     }
-
-    /*  const signInUserResponse: any = await signInUser(data);
-
-    if (signInUserResponse.status === 200) {
-      toast({
-        title: "Event Management System - Redirecting",
-        description: "Successfully Signed in.",
-        className: "bg-green-600 text-neutral-100",
-      });
-      console.log(signInUserResponse);
-      router.push("/dashboard");
-    } else {
-      toast({
-        variant: "destructive",
-        title: "Event Management System",
-        description: signInUserResponse.message,
-      });
-      console.log(signInUserResponse);
-    } */
   };
   return (
     <div className="w-full">
@@ -237,8 +240,8 @@ const HostForm = () => {
                   {"Adding..."}
                 </div>
               ) : (
-                <span className="flex justify-center text-center py-3 w-[50%] h-[56px] text-[#0C092E] text-2xl font-bold bg-[#8AC4D0] rounded-[25px] mb-0">
-                  Add event
+                <span className="flex justify-centerw-[50%] h-[56px] text-[#0C092E] text-2xl font-bold bg-[#8AC4D0] rounded-[25px] mb-0">
+                  {values ? <>Update event</> : <>Add Event</>}
                 </span>
               )}
             </Button>
