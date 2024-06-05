@@ -100,14 +100,13 @@ const ListItemForm = ({ values, onFormSubmit }: any) => {
 
       const itemSubmit: any = await listAnItem(objToDB);
 
-      /* if (buyEventSubmit === "Success") {
+      if (itemSubmit === "Success") {
         toast({
           title: "Event Management System - Redirecting",
           description: "Successfully Bought Tickets.",
           className: "bg-green-600 text-neutral-100",
         });
-        onFormSubmit();
-      } else if (buyEventSubmit === "Out of Stock") {
+      } else if (itemSubmit === "Out of Stock") {
         toast({
           variant: "destructive",
           title: "Event Management System",
@@ -119,8 +118,9 @@ const ListItemForm = ({ values, onFormSubmit }: any) => {
           title: "Event Management System",
           description: "Ticket Buying Failed",
         });
-      } */
+      }
     }
+    onFormSubmit();
   };
   return (
     <div className="w-full flex justify-center">

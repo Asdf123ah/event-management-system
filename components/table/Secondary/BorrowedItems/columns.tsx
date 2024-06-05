@@ -36,10 +36,14 @@ export const columns_BorrowedItem: ColumnDef<itemDetails>[] = [
     header: "Item Stocks",
   },
   {
-    accessorKey: "imagePath",
+    accessorKey: "borrower",
+    header:"Borrower"
+  },
+  {
+    accessorKey: "imageFile",
     header: "Image",
     cell: ({ row }) => {
-      const format: string = row.getValue("imagePath");
+      const format: string = row.getValue("imageFile");
       return (
         <>
           <Image src={format} alt="Pic" height={100} width={100} />

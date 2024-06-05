@@ -1,14 +1,204 @@
 {
   "users": [],
   "events": [],
-  "events-purchased": [],
+  "events-purchased": [
+    {
+      "id": "86b9",
+      "item": "qwe",
+      "quantity": 1,
+      "imageFile": "/images/uploaded/iconcroppped.png",
+      "buyer": "test",
+      "totalPrice": null
+    }
+  ],
   "brgy-items": [
     {
       "id": "d034",
       "item": "qwe",
-      "quantity": 1,
+      "quantity": 0,
       "imagePath": "/images/uploaded/iconcroppped.png"
+    },
+    {
+      "id": "d508",
+      "item": "Teasdqweqa",
+      "quantity": 119,
+      "imagePath": "/images/uploaded/newccsLogoHalf.png"
+    },
+    {
+      "id": "7a3c",
+      "item": "qweasdzxc",
+      "quantity": 22,
+      "imagePath": "/images/uploaded/iconcroppped.png"
+    },
+    {
+      "id": "9af8",
+      "item": "qweasdzxcqaweqwadsqwe",
+      "quantity": 211,
+      "imagePath": "/images/uploaded/iconcroppped.png",
+      "quantityAvailable": null
     }
   ],
-  "item-borrowed": []
+  "items-borrowed": [
+    {
+      "id": "a2ba",
+      "item": "qweasdzxcqaweqwadsqwe",
+      "quantity": 2,
+      "imageFile": "/images/uploaded/iconcroppped.png",
+      "borrower": "test"
+    },
+    {
+      "id": "fc74",
+      "item": "qweasdzxcqaweqwadsqwe",
+      "quantity": 2,
+      "imageFile": "/images/uploaded/iconcroppped.png",
+      "borrower": "test"
+    },
+    {
+      "id": "de51",
+      "item": "Teasdqweqa",
+      "quantity": 3,
+      "imageFile": "/images/uploaded/newccsLogoHalf.png",
+      "borrower": "test"
+    },
+    {
+      "id": "2f39",
+      "item": "Teasdqweqa",
+      "quantity": 3,
+      "imageFile": "/images/uploaded/newccsLogoHalf.png",
+      "borrower": "test"
+    },
+    {
+      "id": "dffb",
+      "item": "Teasdqweqa",
+      "quantity": 3,
+      "imageFile": "/images/uploaded/newccsLogoHalf.png",
+      "borrower": "test"
+    },
+    {
+      "id": "a12e",
+      "item": "qweasdzxcqaweqwadsqwe",
+      "quantity": 3,
+      "imageFile": "/images/uploaded/iconcroppped.png",
+      "borrower": "test"
+    },
+    {
+      "id": "6fd7",
+      "item": "qweasdzxcqaweqwadsqwe",
+      "quantity": 3,
+      "imageFile": "/images/uploaded/iconcroppped.png",
+      "borrower": "test"
+    },
+    {
+      "id": "acc6",
+      "item": "qweasdzxcqaweqwadsqwe",
+      "quantity": 3,
+      "imageFile": "/images/uploaded/iconcroppped.png",
+      "borrower": "test"
+    },
+    {
+      "id": "a431",
+      "item": "qweasdzxcqaweqwadsqwe",
+      "quantity": 3,
+      "imageFile": "/images/uploaded/iconcroppped.png",
+      "borrower": "test"
+    },
+    {
+      "id": "f304",
+      "item": "qweasdzxcqaweqwadsqwe",
+      "quantity": 3,
+      "imageFile": "/images/uploaded/iconcroppped.png",
+      "borrower": "test"
+    },
+    {
+      "id": "aa5a",
+      "item": "qweasdzxcqaweqwadsqwe",
+      "quantity": 3,
+      "imageFile": "/images/uploaded/iconcroppped.png",
+      "borrower": "test"
+    },
+    {
+      "id": "6980",
+      "item": "qweasdzxcqaweqwadsqwe",
+      "quantity": 3,
+      "imageFile": "/images/uploaded/iconcroppped.png",
+      "borrower": "test"
+    },
+    {
+      "id": "f292",
+      "item": "qweasdzxcqaweqwadsqwe",
+      "quantity": 3,
+      "imageFile": "/images/uploaded/iconcroppped.png",
+      "borrower": "test"
+    },
+    {
+      "id": "c1ab",
+      "item": "qwe",
+      "quantity": 1,
+      "imageFile": "/images/uploaded/iconcroppped.png",
+      "borrower": "test"
+    },
+    {
+      "id": "df73",
+      "item": "qwe",
+      "quantity": 1,
+      "imageFile": "/images/uploaded/iconcroppped.png",
+      "borrower": "test"
+    },
+    {
+      "id": "660d",
+      "item": "qwe",
+      "quantity": 1,
+      "imageFile": "/images/uploaded/iconcroppped.png",
+      "borrower": "test"
+    },
+    {
+      "id": "ba0a",
+      "item": "qwe",
+      "quantity": 1,
+      "imageFile": "/images/uploaded/iconcroppped.png",
+      "borrower": "test"
+    },
+    {
+      "id": "1ae9",
+      "item": "qwe",
+      "quantity": 1,
+      "imageFile": "/images/uploaded/iconcroppped.png",
+      "borrower": "test"
+    },
+    {
+      "id": "8677",
+      "item": "qwe",
+      "quantity": 1,
+      "imageFile": "/images/uploaded/iconcroppped.png",
+      "borrower": "test"
+    },
+    {
+      "id": "632f",
+      "item": "qwe",
+      "quantity": 1,
+      "imageFile": "/images/uploaded/iconcroppped.png",
+      "borrower": "test"
+    },
+    {
+      "id": "b300",
+      "item": "qwe",
+      "quantity": 1,
+      "imageFile": "/images/uploaded/iconcroppped.png",
+      "borrower": "test"
+    },
+    {
+      "id": "0a73",
+      "item": "Teasdqweqa",
+      "quantity": 1,
+      "imageFile": "/images/uploaded/newccsLogoHalf.png",
+      "borrower": "test"
+    },
+    {
+      "id": "ee92",
+      "item": "Teasdqweqa",
+      "quantity": 1,
+      "imageFile": "/images/uploaded/newccsLogoHalf.png",
+      "borrower": "test"
+    }
+  ]
 }

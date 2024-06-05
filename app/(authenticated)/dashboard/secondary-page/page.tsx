@@ -29,6 +29,8 @@ import {
 import { DataTable_BorrowItem } from "@/components/table/Secondary/Borrow-an-item/data-table";
 import { columns_BorrowItem } from "@/components/table/Secondary/Borrow-an-item/columns";
 import { DataTable_BorrowedItem } from "@/components/table/Secondary/BorrowedItems/data-table";
+import BorrowerForm from "@/components/Forms/Secondary/BorrowerForm";
+import { columns_BorrowedItem } from "@/components/table/Secondary/BorrowedItems/columns";
 
 async function getData(): Promise<itemDetails[]> {
   const usersResponse = await fetch("http://localhost:5000/brgy-items");
@@ -40,7 +42,7 @@ async function getData(): Promise<itemDetails[]> {
 }
 
 async function getData_borrowed(): Promise<itemDetails[]> {
-  const usersResponse = await fetch("http://localhost:5000/item-borrowed");
+  const usersResponse = await fetch("http://localhost:5000/items-borrowed");
   if (!usersResponse.ok) {
     throw new Error("Failed to fetch events");
   }
@@ -50,7 +52,7 @@ async function getData_borrowed(): Promise<itemDetails[]> {
 
 export default function Page() {
   const [quantity, setQuantity] = useState(1);
-  const [roles, setRoles] = useState<"Host" | "Buyer" | "List">("Host");
+  const [roles, setRoles] = useState<"Host" | "Buyer">("Host");
   const [data, setData] = useState<itemDetails[]>([]);
 
   const [itemBorrowed, setItemBorrowed] = useState<itemDetails[]>([]);
@@ -145,18 +147,6 @@ export default function Page() {
             Borrow an Item
           </Label>
         </div>
-        <div className="flex flex-row w-auto justify-center items-center">
-          <Input
-            type="radio"
-            name="role"
-            value="List"
-            checked={roles === "List"}
-            onChange={handleRoleChange}
-          />
-          <Label className="w-72 text-xl text-white font-bold -ml-8">
-            List of Borrowed Items
-          </Label>
-        </div>
       </CardHeader>
 
       <CardContent className="">
@@ -208,14 +198,14 @@ export default function Page() {
               <div className="flex flex-col justify-center items-center gap-4">
                 <DataTable_BorrowedItem
                   data={itemBorrowed}
-                  columns={columns_BorrowItem}
+                  columns={columns_BorrowedItem}
                   setSelectedRow={setSelectedRow}
                 />
               </div>
             </div>
             {selectedRow && (
               <>
-                <BuyerForm
+                <BorrowerForm
                   values={selectedRow}
                   onFormSubmit={handleFormSubmitCallback}
                 />

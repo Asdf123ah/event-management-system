@@ -268,3 +268,56 @@ export async function listAnItem(data: any) {
     console.error("Error:", error);
   }
 }
+
+export async function borrowItem(data: any, values: any) {
+  try {
+    const getCookie: any = await getUserFromCookie();
+    const cookieObject = JSON.parse(getCookie.value);
+    const borrower = cookieObject.name;
+
+    const quantity_d = data.quantity;
+    const quantity_v = values.quantity;
+
+    // Update available quantity
+    const newStocks = quantity_v - quantity_d;
+    if (newStocks <= 0) {
+      return "Out of Stock";
+    }
+    const updatedEvent = { ...values, quantity: newStocks };
+
+    const url = `http://localhost:5000/brgy-items/${encodeURIComponent(
+      values.id
+    )}`;
+
+    // POST request to add purchased event
+    const borrowResponse = await fetch("http://localhost:5000/items-borrowed", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...data, borrower }),
+    });
+
+    if (!borrowResponse.ok) {
+      throw new Error("Failed to Borrow Item");
+    }
+
+    // PUT request to update event quantity
+    const updateResponse = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedEvent),
+    });
+
+    if (!updateResponse.ok) {
+      throw new Error("Failed to update event quantity");
+    }
+
+    return "Success";
+  } catch (error) {
+    console.error("Error buying ticket:", error);
+    return "Fail";
+  }
+}

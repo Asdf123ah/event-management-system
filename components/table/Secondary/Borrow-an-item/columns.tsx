@@ -33,7 +33,11 @@ export const columns_BorrowItem: ColumnDef<itemDetails>[] = [
   },
   {
     accessorKey: "quantity",
-    header: "Item Stocks",
+    header: "Number of Items Borrowed",
+  },
+  {
+    accessorKey: "borrower",
+    header: "Number of Items Borrowed",
   },
   {
     accessorKey: "imagePath",
