@@ -98,6 +98,7 @@ const HostForm = ({ values, onFormSubmit }: any) => {
             description: "Failed to create event. Event Name is already registered",
           });
         }
+        return
       }
       toast({
         title: "Event Management System",
