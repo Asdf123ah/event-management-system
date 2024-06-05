@@ -14,7 +14,7 @@ async function saveUserToCookie(user: any) {
   cookies().set("user", user);
 }
 
-async function getUserFromCookie() {
+export async function getUserFromCookie() {
   const cookieStore = cookies();
   const user = cookieStore.get("user");
   return user;

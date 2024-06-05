@@ -13,8 +13,13 @@ import Link from "next/link";
 import Signout_Button from "@/components/Signout_Button";
 import { FaInfoCircle } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
+import { getUserFromCookie } from "@/lib/actions";
 
-export default function dashboard_page() {
+export default async function dashboard_page() {
+  const user: any = await getUserFromCookie();
+  const cookieObject = JSON.parse(user.value);
+  const userName = cookieObject.name;
+
   return (
     <Card className="bg-[#28527A]">
       <CardHeader className="flex flex-col justify-center items-center">
@@ -37,7 +42,7 @@ export default function dashboard_page() {
         <div className="text-white flex flex-col justify-start items-start col-span-1">
           <div className="flex flex-col text-left mt-24">
             <h1 className="text-[54px] font-bold">WELCOME,</h1>
-            <h1 className="text-[101px] font-bold -mt-10">USERNAME DITO</h1>
+            <h1 className="text-[101px] font-bold -mt-10">{userName}</h1>
             <Button className="w-[377px] h-[65px] bg-white text-black font-bold text-[28px] rounded-[24px] mt-8 mb-4">
               <Link href={"/dashboard/main-page"}>BUY EVENT TICKET</Link>
             </Button>
