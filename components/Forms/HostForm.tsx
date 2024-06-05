@@ -111,12 +111,13 @@ const HostForm = ({ values, onFormSubmit }: any) => {
             description:
               "Failed to create event. Event Name is already registered",
           });
+        } else if (hostEventSubmit === "Success") {
+          toast({
+            title: "Event Management System",
+            description: "Event created successfully.",
+            className: "bg-green-600 text-neutral-100",
+          });
         }
-        toast({
-          title: "Event Management System",
-          description: "Event created successfully.",
-          className: "bg-green-600 text-neutral-100",
-        });
       }
 
       onFormSubmit();

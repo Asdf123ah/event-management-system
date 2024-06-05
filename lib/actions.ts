@@ -131,6 +131,7 @@ export async function hostEvent(data: HostFormFields) {
       },
       body: JSON.stringify({ ...data, host }),
     });
+    return "Success";
   } catch (error) {
     console.log(error);
   }
@@ -158,7 +159,7 @@ export async function updateEvent(data: any, pastEventDetails: any) {
       }
     );
     if (response.ok) {
-      return "Success"
+      return "Success";
       revalidatePath("/dashboard/main-page");
     }
   } catch (error) {
