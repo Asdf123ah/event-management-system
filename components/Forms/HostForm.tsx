@@ -14,7 +14,7 @@ import Image from "next/image";
 import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
 
-const HostForm = ({ values }: any) => {
+const HostForm = ({ values, onFormSubmit }: any) => {
   const { toast } = useToast();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
@@ -83,8 +83,8 @@ const HostForm = ({ values }: any) => {
       const { imageFile, ...eventData } = data;
       const objToDB = { ...eventData, imagePath };
 
-      console.log(values.eventName);
-
+/*       console.log(values.eventName);
+ */
       // Submit the event data
       if (values) {
         console.log("updating");
@@ -97,7 +97,7 @@ const HostForm = ({ values }: any) => {
         description: "Event created successfully.",
         className: "bg-green-600 text-neutral-100",
       });
-      window.location.reload();
+      onFormSubmit();
     } else {
       toast({
         variant: "destructive",
@@ -193,7 +193,9 @@ const HostForm = ({ values }: any) => {
                 className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[2%]"
                 htmlFor="quantityAvailable"
               >
-                Quantity<br/>of Tickets Available
+                Quantity
+                <br />
+                of Tickets Available
               </Label>
               <Input
                 {...register("quantityAvailable", { valueAsNumber: true })}

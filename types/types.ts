@@ -37,8 +37,14 @@ export const HostFormSchema = z.object({
 
 export type HostFormFields = z.infer<typeof HostFormSchema>;
 
-export const BuyerFormSchema = HostFormSchema.extend({
+export const BuyerFormSchema = z.object({
+  eventName: z.string().min(1),
+  venue: z.string().min(1),
+  date: z.string().min(1),
+  time: z.string().min(1),
+  price: z.number().min(1),
   quantity: z.number().min(1),
+  imageFile: z.any(),
 });
 
 export type BuyerFormFields = z.infer<typeof BuyerFormSchema>;

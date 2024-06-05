@@ -19,7 +19,7 @@ import Image from "next/image";
 import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
 
-const BuyerForm = ({ values }: any) => {
+const BuyerForm = ({ values, onFormSubmit }: any) => {
   const { toast } = useToast();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
@@ -97,25 +97,23 @@ const BuyerForm = ({ values }: any) => {
     const objToDB = { ...eventData, imagePath };
     console.log(objToDB); */
 
-    const buyEventSubmit = await buyTicket(data, values.host);
-    /*  const signInUserResponse: any = await signInUser(data);
+    const buyEventSubmit: any = await buyTicket(data, values.host);
 
-    if (signInUserResponse.status === 200) {
+    if (buyEventSubmit === "Success") {
       toast({
         title: "Event Management System - Redirecting",
-        description: "Successfully Signed in.",
+        description: "Successfully Bought Tickets.",
         className: "bg-green-600 text-neutral-100",
       });
-      console.log(signInUserResponse);
-      router.push("/dashboard");
+      onFormSubmit();
+      /* window.location.reload(); */
     } else {
       toast({
         variant: "destructive",
         title: "Event Management System",
-        description: signInUserResponse.message,
+        description: "Ticket Buying Failed",
       });
-      console.log(signInUserResponse);
-    } */
+    }
   };
   return (
     <div>
@@ -239,7 +237,7 @@ const BuyerForm = ({ values }: any) => {
             )}
           </Button>
         </div>
-        <DevTool control={control} />
+       {/*  <DevTool control={control} /> */}
       </form>
     </div>
   );

@@ -175,4 +175,9 @@ export async function buyTicket(data: BuyerFormFields, host: string) {
     body: JSON.stringify({ ...data, buyer, totalPrice, host }),
   });
   console.log(response);
+  if (response.ok) {
+    return "Success";
+  }else{
+    return "Fail"
+  }
 }

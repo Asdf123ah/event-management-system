@@ -51,6 +51,7 @@ export default function Page() {
 
   //Table Selecting Row
   const [selectedRow, setSelectedRow] = useState();
+  const [triggerEffect, setTriggerEffect] = useState(false); // State variable to trigger useEffect
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,7 +60,7 @@ export default function Page() {
     };
 
     fetchData();
-  }, []);
+  }, [triggerEffect]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,7 +69,7 @@ export default function Page() {
     };
 
     fetchData();
-  }, [!isHosting]);
+  }, [!isHosting, triggerEffect]);
 
   const handleIncrement = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -102,6 +103,10 @@ export default function Page() {
   const removeImage = () => {
     setSelectedImage(null);
     setError(null);
+  };
+
+  const handleFormSubmitCallback = () => {
+    setTriggerEffect((prevState) => !prevState); // Toggle triggerEffect to retrigger useEffect
   };
 
   return (
@@ -157,111 +162,10 @@ export default function Page() {
             </div>
             <div className="grid grid-cols-1">
               <div className=" flex flex-row w-full">
-                {/* First half */}
-
-                <HostForm values={selectedRow}/>
-
-                {/* <div className="flex flex-col gap-4 ml-[7%]">
-                  <div className="flex flex-row w-[90%]">
-                    <Label className="text-white text-[20px] mr-[4%]">
-                      EVENT
-                    </Label>
-                    <Input></Input>
-                  </div>
-                  <div className="flex flex-row">
-                    <Label className="text-white text-[20px] mr-[7%]">
-                      VENUE
-                    </Label>
-                    <Input></Input>
-                  </div>
-                  <div className="flex flex-row">
-                    <Label className="text-white text-[20px] mr-[10%]">
-                      DATE
-                    </Label>
-                    <Input></Input>
-                  </div>
-                  <div className="flex flex-row">
-                    <Label className="text-white text-[20px] mr-[10%]">
-                      TIME
-                    </Label>
-                    <Input></Input>
-                  </div>
-                  <div className="flex flex-row">
-                    <Label className="text-white text-[20px] mr-[8%]">
-                      PRICE
-                    </Label>
-                    <Input></Input>
-                  </div>
-                  <div className="flex flex-row">
-                    <Label className="text-white text-[20px] mr-[8%]">
-                      HOST
-                    </Label>
-                    <Input></Input>
-                  </div>
-                  <div className="flex flex-row w-[90%] items-center">
-                    <Label className="text-white text-[20px] mr-[12%] mb-4">
-                      QUANTITY
-                    </Label>
-                    <div
-                      onClick={handleDecrement}
-                      className="bg-[#FFFFFF] text-[#0C092E] text-[27px] font-bold px-4 rounded-tl-[16px] rounded-bl-[16px] mb-4"
-                    >
-                      -
-                    </div>
-                    <Input
-                      type="number"
-                      value={quantity}
-                      readOnly
-                      className="w-[100px] text-[27px] text-center font-bold mx-0 rounded-none mb-4"
-                    />
-                    <div
-                      onClick={handleIncrement}
-                      className="bg-[#FFFFFF] text-[#0C092E] text-[27px] font-bold px-4 rounded-tr-[16px] rounded-br-[16px] mb-4"
-                    >
-                      +
-                    </div>
-                  </div>
-                </div> */}
-
-                {/* <div className="w-1/3 mx-4">
-                  <div className="flex flex-col justify-center items-center">
-                    <input
-                      type="file"
-                      id="imageUpload"
-                      accept="image/*"
-                      className="hidden"
-                      onChange={handleImageChange}
-                    />
-                    <label
-                      htmlFor="imageUpload"
-                      className="w-56 h-52 mb-4 cursor-pointer relative"
-                    >
-                      <Image
-                        width={900}
-                        height={900}
-                        src={selectedImage || "/images/Rectangle 27.png"}
-                        alt="Event Image"
-                        className="w-full h-full object-cover"
-                      />
-                      {error && (
-                        <div className="absolute bottom-0 left-0 bg-red-500 text-white text-xs px-2 py-1 rounded">
-                          {error}
-                        </div>
-                      )}
-                    </label>
-                    <Button className="w-[241px] bg-[#8AC4D0] text-[#0C092E] text-[21px] font-bold rounded-[25px] mb-4">
-                      PURCHASE
-                    </Button>
-                    <div className="flex flex-row justify-evenly w-full">
-                      <Button className="w-[110px] h-[33px] bg-[#51B94F] text-[18px] text-[#0C092E] font-bold rounded-[25px]">
-                        UPDATE
-                      </Button>
-                      <Button className="w-[110px] h-[33px] bg-[#D65A5A] text-[18px] text-[#0C092E] font-bold rounded-[25px]">
-                        REMOVE
-                      </Button>
-                    </div>
-                  </div>
-                </div> */}
+                <HostForm
+                  values={selectedRow}
+                  onFormSubmit={handleFormSubmitCallback}
+                />
               </div>
             </div>
           </div>
@@ -284,7 +188,10 @@ export default function Page() {
             </div>
             {selectedRow && (
               <>
-                <BuyerForm values={selectedRow} />
+                <BuyerForm
+                  values={selectedRow}
+                  onFormSubmit={handleFormSubmitCallback}
+                />
               </>
             )}
           </div>
