@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Main_Skeleton() {
   return (
-    <div className="flex flex-col w-screen h-screen overflow-y-auto">
+    <div className="flex flex-col w-screen h-screen">
       <div className="h-[100%] w-[92%] bg-gray-300 rounded-md mt-1">
         <div className="flex flex-row justify-center space-x-5 mt-7">
           <div className="h-10 w-14 bg-gray-400 rounded-sm"></div>
