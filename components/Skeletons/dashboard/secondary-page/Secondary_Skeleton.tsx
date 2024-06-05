@@ -5,13 +5,11 @@ export default function Main_Skeleton() {
   return (
     <div className="flex flex-col w-screen h-screen">
       <div className="h-[100%] w-[92%] bg-gray-300 rounded-md mt-1">
-        <div className="flex flex-row ml-[23%] mt-7">
+      <div className="flex flex-row ml-[35%] mt-7">
           <div className="h-12 w-12 bg-gray-400 rounded-full"></div>
           <div className="h-10 w-32 bg-gray-400 ml-4 rounded-sm"></div>
           <div className="h-12 w-12 bg-gray-400 ml-28 rounded-full"></div>
           <div className="h-10 w-32 bg-gray-400 ml-4 rounded-sm"></div>
-          <div className="h-12 w-12 bg-gray-400 ml-28 rounded-full"></div>
-          <div className="h-16 w-36 bg-gray-400 ml-4 rounded-sm"></div>
         </div>
 
         <div className="flex flex-row ml-24 mt-9 space-x-[38%]">
