@@ -123,13 +123,13 @@ const ListItemForm = ({ values, onFormSubmit }: any) => {
     }
   };
   return (
-    <div className="w-full">
-      <form onSubmit={handleSubmit(onSubmit)} className="h-full">
-        <div className="flex flex-row gap-8 ml-[8%] mt-8 w-full">
-          <div className="flex flex-col gap-4 w-3/4">
+    <div className="w-full flex justify-center"> {/* Center the form horizontally */}
+      <form onSubmit={handleSubmit(onSubmit)} className="h-full w-full max-w-4xl"> {/* Limit the width of the form */}
+        <div className="flex flex-col gap-8 mt-8 w-full items-center"> {/* Center form content */}
+          <div className="flex flex-col gap-4 w-full items-center">
             <div className="flex flex-row w-full justify-center">
               <Label
-                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[11%]"
+                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-4"
                 htmlFor="item"
               >
                 Item
@@ -139,15 +139,14 @@ const ListItemForm = ({ values, onFormSubmit }: any) => {
                 className="w-full h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-4"
                 id="item"
                 placeholder="Enter The Name of the Item"
-                /*  value={values.eventName} */
+                /* value={values.eventName} */
               />
             </div>
-
-            <div className="flex flex-row w-full">
-              <Label className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[9%]">
+  
+            <div className="flex flex-row w-full justify-center">
+              <Label className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-4">
                 Quantity
               </Label>
-
               <Input
                 {...register("quantity", {
                   valueAsNumber: true,
@@ -158,36 +157,38 @@ const ListItemForm = ({ values, onFormSubmit }: any) => {
                 className="w-full h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-0"
               />
             </div>
-
+  
             <Label
-              className="text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[8%]"
+              className="text-[#FFFFFF] text-[21px] font-bold mb-0 mr-4 mt-4"
               htmlFor="imageUpload"
             >
               Item Image
             </Label>
-
+  
             <Input
               {...register("imageFile", { required: true })}
               type="file"
               id="imageUpload"
               accept="image/*"
-              className="w-[65%]"
+              className="w-[65%] mt-2"
               onChange={handleImageChange}
               /* value={values.imagePath} */
             />
-            <Image
-              width={700}
-              height={700}
-              src={/* values.imagePath || */ "/images/Rectangle 27.png"}
-              alt="Event Image"
-              className="flex w-[40%] h-[40%] max-h-[53%] max-w-[65%] object-fill items-center justify-center mx-auto"
-            />
-
-            <div className="flex justify-center">
+            <div className="flex justify-center w-full mt-4">
+              <Image
+                width={700}
+                height={700}
+                src={/* values.imagePath || */ "/images/Rectangle 27.png"}
+                alt="Item Image"
+                className="w-[40%] h-[40%] max-h-[53%] max-w-[65%] object-fill"
+              />
+            </div>
+  
+            <div className="flex justify-center w-full mt-4">
               <Button
                 disabled={isSubmitting}
                 type="submit"
-                className="ml-16 w-[365px] h-[56px] text-white text-2xl font-bold bg-[#8AC4D0] rounded-2xl hover:bg-blue-700 mb-0"
+                className="w-[365px] h-[56px] text-white text-2xl font-bold bg-[#8AC4D0] rounded-2xl hover:bg-blue-700 mb-0"
               >
                 {isSubmitting ? (
                   <h1 className="flex flex-row items-center justify-center space-x-2 text-lg">
@@ -196,18 +197,19 @@ const ListItemForm = ({ values, onFormSubmit }: any) => {
                   </h1>
                 ) : (
                   <h1 className="flex flex-row space-x-2 text-lg">
-                    Buy Ticket/s
+                    List item/s
                   </h1>
                 )}
               </Button>
             </div>
-
+  
             {/*  <DevTool control={control} /> */}
           </div>
         </div>
       </form>
     </div>
   );
+  
 };
 
 export default ListItemForm;
