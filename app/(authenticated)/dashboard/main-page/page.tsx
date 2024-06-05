@@ -16,7 +16,6 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
-import { FaSearch } from "react-icons/fa";
 
 async function getData(): Promise<Payment[]> {
   const usersResponse = await fetch("http://localhost:5000/events");
@@ -109,10 +108,10 @@ export default function Page() {
         </div>
         <div className="flex flex-col justify-center items-center space-y-4">
           <h1 className="text-white text-[36px] font-bold mt-8">EVENTS</h1>
-          <div className="relative w-[90%]">
+          {/* <div className="relative w-[90%]">
             <Input className="w-full" />
             <FaSearch className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-800" />
-          </div>
+          </div> */}
           <DataTable columns={columns} data={data} />
           <div className="flex flex-row w-[90%]">
             <Label className="text-white text-[20px] mr-[4%]">EVENT</Label>

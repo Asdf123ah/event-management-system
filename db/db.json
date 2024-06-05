@@ -5,6 +5,12 @@
       "name": "Test",
       "email": "test@test.com",
       "password": "Testtest1!"
+    },
+    {
+      "id": "dcf5",
+      "name": "Sheena",
+      "email": "sheena@test.com",
+      "password": "Testtest1!"
     }
   ],
   "events": [
@@ -13,7 +19,60 @@
       "venue": "Venue 1",
       "date": "06/02/2024",
       "time": "12:00pm",
-      "price": "1,000"
+      "price": "1,000",
+      "host": "Host 1",
+      "image": "Image1.png",
+      "id": "22cd"
+    },
+    {
+      "event": "Event 2",
+      "venue": "Venue 2",
+      "date": "06/02/2024",
+      "time": "12:00pm",
+      "price": "1,100",
+      "host": "Host 2",
+      "image": "Image2.png",
+      "id": "23cd"
+    },
+    {
+      "event": "Event 3",
+      "venue": "Venue 3",
+      "date": "06/02/2024",
+      "time": "12:00pm",
+      "price": "1,200",
+      "host": "Host 3",
+      "image": "Image3.png",
+      "id": "24cd"
+    },
+    {
+      "event": "Event 4",
+      "venue": "Venue 4",
+      "date": "06/02/2024",
+      "time": "12:00pm",
+      "price": "1,300",
+      "host": "Host 4",
+      "image": "Image4.png",
+      "id": "25cd"
+    },
+    {
+      "event": "Event 5",
+      "venue": "Venue 5",
+      "date": "06/02/2024",
+      "time": "12:00pm",
+      "price": "1,400",
+      "host": "Host 5",
+      "image": "Image5.png",
+      "id": "26cd"
+    },
+    {
+      "event": "Event 6",
+      "venue": "Venue 6",
+      "date": "06/02/2024",
+      "time": "12:00pm",
+      "price": "1,500",
+      "host": "Host 6",
+      "image": "Image6.png",
+      "id": "27cd"
     }
   ]
 }
