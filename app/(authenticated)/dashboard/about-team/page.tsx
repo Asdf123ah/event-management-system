@@ -9,13 +9,16 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
+import Link from "next/link";
 
 export default function page() {
   return (
     <div>
       <Card className="bg-[#28527A]">
         <div className="absolute mt-4 ml-8">
-          <IoArrowBackCircleSharp className="absolute text-[80px] text-[#ffffff] cursor-pointer text-start" />
+          <Link href="/dashboard">
+            <IoArrowBackCircleSharp className="absolute text-[80px] text-[#ffffff] cursor-pointer text-start" />
+          </Link>
         </div>
         <CardHeader className="flex flex-col justify-center items-center">
           <CardTitle className="text-white text-[51px] font-bold uppercase">
