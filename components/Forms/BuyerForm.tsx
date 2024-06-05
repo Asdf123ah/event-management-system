@@ -256,7 +256,7 @@ const BuyerForm = ({ values, onFormSubmit }: any) => {
               </Button>
             </div>
 
-            <DevTool control={control} />
+           {/*  <DevTool control={control} /> */}
           </div>
         </div>
       </form>
