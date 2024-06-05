@@ -31,7 +31,7 @@ interface DataTableProps<TData, TValue> {
   setSelectedRow: any;
 }
 
-export function DataTable_ListItem<TData, TValue>({
+export function DataTable_BorrowedItem<TData, TValue>({
   columns,
   data,
   setSelectedRow,

@@ -4,16 +4,11 @@
   "events-purchased": [],
   "brgy-items": [
     {
-      "id": "test",
-      "item": "Tambo",
-      "quantity": 1,
-      "imagePath": ""
-    },
-    {
       "id": "d034",
       "item": "qwe",
       "quantity": 1,
       "imagePath": "/images/uploaded/iconcroppped.png"
     }
-  ]
+  ],
+  "item-borrowed": []
 }
