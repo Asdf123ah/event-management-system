@@ -83,14 +83,21 @@ const HostForm = ({ values, onFormSubmit }: any) => {
       const { imageFile, ...eventData } = data;
       const objToDB = { ...eventData, imagePath };
 
-/*       console.log(values.eventName);
- */
+      /*       console.log(values.eventName);
+       */
       // Submit the event data
       if (values) {
         console.log("updating");
         const updateEventSubmit = await updateEvent(objToDB, values);
       } else {
         const hostEventSubmit = await hostEvent(objToDB);
+        if (hostEventSubmit === "Event Name is already registered.") {
+          toast({
+            variant: "destructive",
+            title: "Event Management System",
+            description: "Failed to create event. Event Name is already registered",
+          });
+        }
       }
       toast({
         title: "Event Management System",
