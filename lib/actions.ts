@@ -6,6 +6,7 @@ import {
   LoginFormFields,
   SignUpFormFields,
 } from "@/types/types";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { z } from "zod";
 
@@ -107,8 +108,6 @@ export async function hostEvent(data: HostFormFields) {
       body: data as any,
     }); */
     const getCookie: any = await getUserFromCookie();
-    /* console.log(test);
-    console.log(JSON.stringify(test)); */
 
     const cookieObject = JSON.parse(getCookie.value);
 
@@ -121,7 +120,35 @@ export async function hostEvent(data: HostFormFields) {
       },
       body: JSON.stringify({ ...data, host }),
     });
-    
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function updateEvent(data: any, pastEventDetails: any) {
+  try {
+    console.log(
+      `http://localhost:5000/events/${encodeURIComponent(pastEventDetails.id)}`
+    );
+    const getCookie: any = await getUserFromCookie();
+
+    const cookieObject = JSON.parse(getCookie.value);
+
+    const host = cookieObject.name;
+
+    const response = await fetch(
+      `http://localhost:5000/events/${encodeURIComponent(pastEventDetails.id)}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...data, host }),
+      }
+    );
+    if (response.ok) {
+      revalidatePath("/dashboard/main-page");
+    }
   } catch (error) {
     console.log(error);
   }

@@ -159,7 +159,7 @@ export default function Page() {
               <div className=" flex flex-row w-full">
                 {/* First half */}
 
-                <HostForm />
+                <HostForm values={selectedRow}/>
 
                 {/* <div className="flex flex-col gap-4 ml-[7%]">
                   <div className="flex flex-row w-[90%]">
