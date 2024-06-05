@@ -10,16 +10,28 @@ import {
 } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
-import { Payment, columns } from "@/components/table/columns";
+import { EventDetails, columns } from "@/components/table/columns";
 import { DataTable } from "@/components/table/data-table";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import HostForm from "@/components/Forms/HostForm";
+import { DataTable_Buyer } from "@/components/table/buyticket/data-table";
+import BuyerForm from "@/components/Forms/BuyerForm";
+import { columns_buyer } from "@/components/table/buyticket/columns";
 
-async function getData(): Promise<Payment[]> {
+async function getData(): Promise<EventDetails[]> {
   const usersResponse = await fetch("http://localhost:5000/events");
+  if (!usersResponse.ok) {
+    throw new Error("Failed to fetch events");
+  }
+  const users = await usersResponse.json();
+  return users;
+}
+
+async function getData_purchased(): Promise<EventDetails[]> {
+  const usersResponse = await fetch("http://localhost:5000/events-purchased");
   if (!usersResponse.ok) {
     throw new Error("Failed to fetch events");
   }
@@ -30,9 +42,15 @@ async function getData(): Promise<Payment[]> {
 export default function Page() {
   const [quantity, setQuantity] = useState(1);
   const [isHosting, setIsHosting] = useState<"Host" | "Buyer">("Host");
-  const [data, setData] = useState<Payment[]>([]);
+  const [data, setData] = useState<EventDetails[]>([]);
+
+  const [ticketBought, setTicketBought] = useState<EventDetails[]>([]);
+
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  //Table Selecting Row
+  const [selectedRow, setSelectedRow] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,6 +60,15 @@ export default function Page() {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getData_purchased();
+      setTicketBought(result);
+    };
+
+    fetchData();
+  }, [!isHosting]);
 
   const handleIncrement = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -53,6 +80,7 @@ export default function Page() {
 
   const handleRoleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsHosting(event.target.value as "Host" | "Buyer");
+    setSelectedRow(undefined);
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -120,7 +148,11 @@ export default function Page() {
           <div className="grid grid-cols-1">
             <div className="col-span-1">
               <div className="flex flex-col justify-center items-center space-y-4">
-                <DataTable columns={columns} data={data} />
+                <DataTable
+                  columns={columns}
+                  data={data}
+                  setSelectedRow={setSelectedRow}
+                />
               </div>
             </div>
             <div className="grid grid-cols-1">
@@ -235,8 +267,26 @@ export default function Page() {
           </div>
         ) : (
           <div className="flex flex-col items-center col-span-1 space-y-4">
-            <h1 className="text-white text-[36px] font-bold mt-8">PURCHASED</h1>
-            <DataTable columns={columns} data={data} />
+            <div className="grid grid-cols-2">
+              <div>
+                <DataTable
+                  columns={columns}
+                  data={data}
+                  setSelectedRow={setSelectedRow}
+                />
+              </div>
+              <div>
+                <h1 className="text-white text-[36px] font-bold mt-8">
+                  PURCHASED
+                </h1>
+                <DataTable_Buyer columns={columns_buyer} data={ticketBought} />
+              </div>
+            </div>
+            {selectedRow && (
+              <>
+                <BuyerForm values={selectedRow} />
+              </>
+            )}
           </div>
         )}
       </CardContent>

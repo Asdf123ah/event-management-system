@@ -15,7 +15,7 @@ export type EventDetails = {
   image: string;
 };
 
-export const columns: ColumnDef<EventDetails>[] = [
+export const columns_buyer: ColumnDef<EventDetails>[] = [
   {
     accessorKey: "eventName",
     header: ({ column }) => {
@@ -51,10 +51,22 @@ export const columns: ColumnDef<EventDetails>[] = [
     header: "Host",
   },
   {
-    accessorKey: "imagePath",
+    accessorKey: "buyer",
+    header: "Buyer's Name",
+  },
+  {
+    accessorKey: "quantity",
+    header: "Ticket Bought",
+  },
+  {
+    accessorKey: "totalPrice",
+    header: "Total Amount",
+  },
+  {
+    accessorKey: "imageFile",
     header: "Image",
     cell: ({ row }) => {
-      const format: string = row.getValue("imagePath");
+      const format: string = row.getValue("imageFile");
       return (
         <>
           <Image src={format} alt="Pic" height={100} width={100} />
