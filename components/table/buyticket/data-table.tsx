@@ -28,13 +28,11 @@ import { FaSearch } from "react-icons/fa";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  setSelectedRow: any;
 }
 
-export function DataTable<TData, TValue>({
+export function DataTable_Buyer<TData, TValue>({
   columns,
   data,
-  setSelectedRow,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -54,11 +52,6 @@ export function DataTable<TData, TValue>({
       columnFilters,
     },
   });
-
-  const onRowClick = (row: any) => {
-    console.log(row.original);
-    setSelectedRow(row.original);
-  };
 
   return (
     <>
@@ -107,9 +100,6 @@ export function DataTable<TData, TValue>({
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                   className="text-black text-[16px] text-center"
-                  onClick={() => {
-                    onRowClick(row);
-                  }}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
