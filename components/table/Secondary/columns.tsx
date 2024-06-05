@@ -32,7 +32,7 @@ export const columns_ListItem: ColumnDef<itemDetails>[] = [
     header: "Item",
   },
   {
-    accessorKey: "stocks",
+    accessorKey: "quantity",
     header: "Item Stocks",
   },
   {

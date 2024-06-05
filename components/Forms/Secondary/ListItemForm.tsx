@@ -1,10 +1,12 @@
 "use client";
-import { buyTicket, hostEvent, signInUser } from "@/lib/actions";
+import { buyTicket, hostEvent, listAnItem, signInUser } from "@/lib/actions";
 import {
   BuyerFormFields,
   BuyerFormSchema,
   HostFormFields,
   HostFormSchema,
+  ListItemFields,
+  ListItemSchema,
 } from "@/types/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -64,10 +66,10 @@ const ListItemForm = ({ values, onFormSubmit }: any) => {
     setValue,
     control,
     formState: { errors, isSubmitting },
-  } = useForm<BuyerFormFields>({ resolver: zodResolver(BuyerFormSchema) });
+  } = useForm<ListItemFields>({ resolver: zodResolver(ListItemSchema) });
 
   useEffect(() => {
-   /*  setValue("eventName", values.eventName);
+    /*  setValue("eventName", values.eventName);
     setValue("venue", values.venue);
     setValue("date", values.date);
     setValue("time", values.time);
@@ -75,10 +77,10 @@ const ListItemForm = ({ values, onFormSubmit }: any) => {
     setValue("imageFile", values.imagePath); */
   }, [values]);
 
-  const onSubmit: SubmitHandler<BuyerFormFields> = async (data: any) => {
+  const onSubmit: SubmitHandler<ListItemFields> = async (data: any) => {
     console.log(data);
 
-    /* const formData = new FormData();
+    const formData = new FormData();
     formData.append("file", data.imageFile[0]);
 
     const res = await fetch("/api/upload", {
@@ -88,37 +90,36 @@ const ListItemForm = ({ values, onFormSubmit }: any) => {
 
     if (res.ok) {
       const response = await res.json();
-      setImagePath(`/images/uploaded/${data.imageFile[0].name}`);
-      alert("File uploaded successfully!");
-    } else {
-      alert("File upload failed!");
-    }
-    const { imageFile, ...eventData } = data;
-    const objToDB = { ...eventData, imagePath };
-    console.log(objToDB); */
+      console.log(response);
+      // Set the image path from the response
+      const imagePath = `/images/uploaded/${response.fileName}`;
 
-    const buyEventSubmit: any = await buyTicket(data, values.host, values);
+      // Prepare data to save in the database
+      const { imageFile, ...eventData } = data;
+      const objToDB = { ...eventData, imagePath };
 
-    if (buyEventSubmit === "Success") {
-      toast({
-        title: "Event Management System - Redirecting",
-        description: "Successfully Bought Tickets.",
-        className: "bg-green-600 text-neutral-100",
-      });
-      onFormSubmit();
-      /* window.location.reload(); */
-    } else if (buyEventSubmit === "Out of Stock") {
-      toast({
-        variant: "destructive",
-        title: "Event Management System",
-        description: "Ticket Buying Failed - Out of Stocks",
-      });
-    } else {
-      toast({
-        variant: "destructive",
-        title: "Event Management System",
-        description: "Ticket Buying Failed",
-      });
+      const itemSubmit: any = await listAnItem(objToDB);
+
+      /* if (buyEventSubmit === "Success") {
+        toast({
+          title: "Event Management System - Redirecting",
+          description: "Successfully Bought Tickets.",
+          className: "bg-green-600 text-neutral-100",
+        });
+        onFormSubmit();
+      } else if (buyEventSubmit === "Out of Stock") {
+        toast({
+          variant: "destructive",
+          title: "Event Management System",
+          description: "Ticket Buying Failed - Out of Stocks",
+        });
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Event Management System",
+          description: "Ticket Buying Failed",
+        });
+      } */
     }
   };
   return (
@@ -129,80 +130,16 @@ const ListItemForm = ({ values, onFormSubmit }: any) => {
             <div className="flex flex-row w-full justify-center">
               <Label
                 className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[11%]"
-                htmlFor="event"
+                htmlFor="item"
               >
-                Event
+                Item
               </Label>
               <Input
-                {...register("eventName")}
+                {...register("item")}
                 className="w-full h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-4"
-                id="event"
-                placeholder="Enter The Name of the Event"
-               /*  value={values.eventName} */
-              />
-            </div>
-
-            <div className="flex flex-row w-full">
-              <Label
-                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[11%]"
-                htmlFor="venue"
-              >
-                Venue
-              </Label>
-              <Input
-                {...register("venue")}
-                className="w-full h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-4"
-                id="venue"
-                placeholder="Enter The Venue of the Event"
-               /*  value={values.venue} */
-              />
-            </div>
-
-            <div className="flex flex-row w-full">
-              <Label
-                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[12%]"
-                htmlFor="date"
-              >
-                Date
-              </Label>
-              <Input
-                {...register("date")}
-                className="w-full h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-4"
-                id="date"
-                placeholder="Enter The Date of the Event"
-                /* value={values.date} */
-              />
-            </div>
-
-            <div className="flex flex-row w-full">
-              <Label
-                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[12%]"
-                htmlFor="time"
-              >
-                Time
-              </Label>
-              <Input
-                {...register("time")}
-                className="w-full h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-4"
-                id="time"
-                placeholder="Enter The Time of the Event"
-                /* value={values.time} */
-              />
-            </div>
-
-            <div className="flex flex-row w-full">
-              <Label
-                className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[12%]"
-                htmlFor="price"
-              >
-                Price
-              </Label>
-              <Input
-                {...register("price", { valueAsNumber: true })}
-                className="w-full h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-4"
-                id="price"
-                placeholder="Enter The Price of a ticket for the Event"
-                /* value={values.price} */
+                id="item"
+                placeholder="Enter The Name of the Item"
+                /*  value={values.eventName} */
               />
             </div>
 
@@ -212,7 +149,7 @@ const ListItemForm = ({ values, onFormSubmit }: any) => {
               </Label>
 
               <Input
-                {...register("stocks", {
+                {...register("quantity", {
                   valueAsNumber: true,
                   required: true,
                 })}
@@ -226,12 +163,15 @@ const ListItemForm = ({ values, onFormSubmit }: any) => {
               className="text-[#FFFFFF] text-[21px] font-bold mb-0 mr-[8%]"
               htmlFor="imageUpload"
             >
-              Event Image
+              Item Image
             </Label>
 
             <Input
               {...register("imageFile", { required: true })}
-              className="hidden"
+              type="file"
+              id="imageUpload"
+              accept="image/*"
+              className="w-[65%]"
               onChange={handleImageChange}
               /* value={values.imagePath} */
             />

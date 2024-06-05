@@ -224,3 +224,47 @@ export async function buyTicket(
     return "Fail";
   }
 }
+
+// SECONDARY
+
+async function fetchItems() {
+  // await new Promise((resolve) => setTimeout(resolve, 1000));
+  // Fetch existing users
+  const itemsResponse = await fetch("http://localhost:5000/brgy-items");
+  if (!itemsResponse.ok) {
+    throw new Error("Failed to fetch Items");
+  }
+  const items = await itemsResponse.json();
+  return items;
+}
+
+export async function listAnItem(data: any) {
+  try {
+    const items = await fetchItems();
+    // Check if the email already exists
+    const itemExists = items.some(
+      (item: { item: string }) => item.item === data.item
+    );
+    if (itemExists) {
+      return "Email is already registered.";
+    }
+
+    const response = await fetch("http://localhost:5000/brgy-items", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const responseData = await response.json();
+    console.log("User added:", responseData);
+    return responseData;
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
