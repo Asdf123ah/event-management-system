@@ -123,9 +123,18 @@ const ListItemForm = ({ values, onFormSubmit }: any) => {
     }
   };
   return (
-    <div className="w-full flex justify-center"> {/* Center the form horizontally */}
-      <form onSubmit={handleSubmit(onSubmit)} className="h-full w-full max-w-4xl"> {/* Limit the width of the form */}
-        <div className="flex flex-col gap-8 mt-8 w-full items-center"> {/* Center form content */}
+    <div className="w-full flex justify-center">
+      {" "}
+      {/* Center the form horizontally */}
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="h-full w-full max-w-4xl"
+      >
+        {" "}
+        {/* Limit the width of the form */}
+        <div className="flex flex-col gap-8 mt-8 w-full items-center">
+          {" "}
+          {/* Center form content */}
           <div className="flex flex-col gap-4 w-full items-center">
             <div className="flex flex-row w-full justify-center">
               <Label
@@ -142,7 +151,7 @@ const ListItemForm = ({ values, onFormSubmit }: any) => {
                 /* value={values.eventName} */
               />
             </div>
-  
+
             <div className="flex flex-row w-full justify-center">
               <Label className="block text-[#FFFFFF] text-[21px] font-bold mb-0 mr-4">
                 Quantity
@@ -157,14 +166,14 @@ const ListItemForm = ({ values, onFormSubmit }: any) => {
                 className="w-full h-[56px] px-4 py-2 text-black text-[21px] bg-[#8AC4D0] border border-gray-300 rounded-lg mb-0"
               />
             </div>
-  
+
             <Label
               className="text-[#FFFFFF] text-[21px] font-bold mb-0 mr-4 mt-4"
               htmlFor="imageUpload"
             >
               Item Image
             </Label>
-  
+
             <Input
               {...register("imageFile", { required: true })}
               type="file"
@@ -178,12 +187,12 @@ const ListItemForm = ({ values, onFormSubmit }: any) => {
               <Image
                 width={700}
                 height={700}
-                src={/* values.imagePath || */ "/images/Rectangle 27.png"}
+                src={selectedImage || "/images/Rectangle 27.png"}
                 alt="Item Image"
                 className="w-[40%] h-[40%] max-h-[53%] max-w-[65%] object-fill"
               />
             </div>
-  
+
             <div className="flex justify-center w-full mt-4">
               <Button
                 disabled={isSubmitting}
@@ -202,14 +211,13 @@ const ListItemForm = ({ values, onFormSubmit }: any) => {
                 )}
               </Button>
             </div>
-  
+
             {/*  <DevTool control={control} /> */}
           </div>
         </div>
       </form>
     </div>
   );
-  
 };
 
 export default ListItemForm;
