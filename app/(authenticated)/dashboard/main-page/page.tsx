@@ -16,6 +16,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
+import HostForm from "@/components/Forms/HostForm";
 
 async function getData(): Promise<Payment[]> {
   const usersResponse = await fetch("http://localhost:5000/events");
@@ -100,125 +101,135 @@ export default function Page() {
         </div>
       </CardHeader>
 
-      <CardContent className="grid grid-cols-2">
-        <div className="absolute mt-4 ml-8">
+      <CardContent className="">
+        <div className="mt-4 ml-8 flex">
           <Link href="/dashboard">
             <IoArrowBackCircleSharp className="text-[80px] text-[#ffffff] cursor-pointer " />
           </Link>
         </div>
-        <div className="flex flex-col justify-center items-center space-y-4">
-          <h1 className="text-white text-[36px] font-bold mt-8">EVENTS</h1>
-          {/* <div className="relative w-[90%]">
-            <Input className="w-full" />
-            <FaSearch className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-800" />
-          </div> */}
-          <DataTable columns={columns} data={data} />
-          <div className="flex flex-row w-[90%]">
-            <Label className="text-white text-[20px] mr-[4%]">EVENT</Label>
-            <Input></Input>
-          </div>
-
-          <div className="flex flex-row w-full">
-            {/* First half */}
-            <div className="w-2/3">
-              <div className="flex flex-col gap-4 ml-[7%]">
-                <div className="flex flex-row">
-                  <Label className="text-white text-[20px] mr-[7%]">
-                    VENUE
-                  </Label>
-                  <Input></Input>
-                </div>
-                <div className="flex flex-row">
-                  <Label className="text-white text-[20px] mr-[10%]">
-                    DATE
-                  </Label>
-                  <Input></Input>
-                </div>
-                <div className="flex flex-row">
-                  <Label className="text-white text-[20px] mr-[10%]">
-                    TIME
-                  </Label>
-                  <Input></Input>
-                </div>
-                <div className="flex flex-row">
-                  <Label className="text-white text-[20px] mr-[8%]">
-                    PRICE
-                  </Label>
-                  <Input></Input>
-                </div>
-                <div className="flex flex-row">
-                  <Label className="text-white text-[20px] mr-[8%]">HOST</Label>
-                  <Input></Input>
-                </div>
-                <div className="flex flex-row w-[90%] items-center">
-                  <Label className="text-white text-[20px] mr-[12%] mb-4">
-                    QUANTITY
-                  </Label>
-                  <div
-                    onClick={handleDecrement}
-                    className="bg-[#FFFFFF] text-[#0C092E] text-[27px] font-bold px-4 rounded-tl-[16px] rounded-bl-[16px] mb-4"
-                  >
-                    -
-                  </div>
-                  <Input
-                    type="number"
-                    value={quantity}
-                    readOnly
-                    className="w-[100px] text-[27px] text-center font-bold mx-0 rounded-none mb-4"
-                  />
-                  <div
-                    onClick={handleIncrement}
-                    className="bg-[#FFFFFF] text-[#0C092E] text-[27px] font-bold px-4 rounded-tr-[16px] rounded-br-[16px] mb-4"
-                  >
-                    +
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Second half */}
-            <div className="w-1/3 mx-4">
-              <div className="flex flex-col justify-center items-center">
-                <input
-                  type="file"
-                  id="imageUpload"
-                  accept="image/*"
-                  className="hidden"
-                  onChange={handleImageChange}
-                />
-                <label
-                  htmlFor="imageUpload"
-                  className="w-56 h-52 mb-4 cursor-pointer relative"
-                >
-                  <Image
-                    width={900}
-                    height={900}
-                    src={selectedImage || "/images/Rectangle 27.png"}
-                    alt="Event Image"
-                    className="w-full h-full object-cover"
-                  />
-                  {error && (
-                    <div className="absolute bottom-0 left-0 bg-red-500 text-white text-xs px-2 py-1 rounded">
-                      {error}
-                    </div>
-                  )}
-                </label>
-                <Button className="w-[241px] bg-[#8AC4D0] text-[#0C092E] text-[21px] font-bold rounded-[25px] mb-4">
-                  PURCHASE
-                </Button>
-                <div className="flex flex-row justify-evenly w-full">
-                  <Button className="w-[110px] h-[33px] bg-[#51B94F] text-[18px] text-[#0C092E] font-bold rounded-[25px]">
-                    UPDATE
-                  </Button>
-                  <Button className="w-[110px] h-[33px] bg-[#D65A5A] text-[18px] text-[#0C092E] font-bold rounded-[25px]">
-                    REMOVE
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div>
+          <h1 className="flex items-center justify-center text-white text-[36px] font-bold ">
+            EVENTS
+          </h1>
         </div>
-        {isHosting === "Buyer" && (
+        {isHosting === "Host" ? (
+          <div className="grid grid-cols-2">
+            <div className="col-span-1">
+              <div className="flex flex-col justify-center items-center space-y-4">
+                <DataTable columns={columns} data={data} />
+              </div>
+            </div>
+            <div className="col-span-1">
+              <div className=" flex flex-row w-full">
+                {/* First half */}
+
+                <HostForm />
+
+                {/* <div className="flex flex-col gap-4 ml-[7%]">
+                  <div className="flex flex-row w-[90%]">
+                    <Label className="text-white text-[20px] mr-[4%]">
+                      EVENT
+                    </Label>
+                    <Input></Input>
+                  </div>
+                  <div className="flex flex-row">
+                    <Label className="text-white text-[20px] mr-[7%]">
+                      VENUE
+                    </Label>
+                    <Input></Input>
+                  </div>
+                  <div className="flex flex-row">
+                    <Label className="text-white text-[20px] mr-[10%]">
+                      DATE
+                    </Label>
+                    <Input></Input>
+                  </div>
+                  <div className="flex flex-row">
+                    <Label className="text-white text-[20px] mr-[10%]">
+                      TIME
+                    </Label>
+                    <Input></Input>
+                  </div>
+                  <div className="flex flex-row">
+                    <Label className="text-white text-[20px] mr-[8%]">
+                      PRICE
+                    </Label>
+                    <Input></Input>
+                  </div>
+                  <div className="flex flex-row">
+                    <Label className="text-white text-[20px] mr-[8%]">
+                      HOST
+                    </Label>
+                    <Input></Input>
+                  </div>
+                  <div className="flex flex-row w-[90%] items-center">
+                    <Label className="text-white text-[20px] mr-[12%] mb-4">
+                      QUANTITY
+                    </Label>
+                    <div
+                      onClick={handleDecrement}
+                      className="bg-[#FFFFFF] text-[#0C092E] text-[27px] font-bold px-4 rounded-tl-[16px] rounded-bl-[16px] mb-4"
+                    >
+                      -
+                    </div>
+                    <Input
+                      type="number"
+                      value={quantity}
+                      readOnly
+                      className="w-[100px] text-[27px] text-center font-bold mx-0 rounded-none mb-4"
+                    />
+                    <div
+                      onClick={handleIncrement}
+                      className="bg-[#FFFFFF] text-[#0C092E] text-[27px] font-bold px-4 rounded-tr-[16px] rounded-br-[16px] mb-4"
+                    >
+                      +
+                    </div>
+                  </div>
+                </div> */}
+
+                {/* <div className="w-1/3 mx-4">
+                  <div className="flex flex-col justify-center items-center">
+                    <input
+                      type="file"
+                      id="imageUpload"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleImageChange}
+                    />
+                    <label
+                      htmlFor="imageUpload"
+                      className="w-56 h-52 mb-4 cursor-pointer relative"
+                    >
+                      <Image
+                        width={900}
+                        height={900}
+                        src={selectedImage || "/images/Rectangle 27.png"}
+                        alt="Event Image"
+                        className="w-full h-full object-cover"
+                      />
+                      {error && (
+                        <div className="absolute bottom-0 left-0 bg-red-500 text-white text-xs px-2 py-1 rounded">
+                          {error}
+                        </div>
+                      )}
+                    </label>
+                    <Button className="w-[241px] bg-[#8AC4D0] text-[#0C092E] text-[21px] font-bold rounded-[25px] mb-4">
+                      PURCHASE
+                    </Button>
+                    <div className="flex flex-row justify-evenly w-full">
+                      <Button className="w-[110px] h-[33px] bg-[#51B94F] text-[18px] text-[#0C092E] font-bold rounded-[25px]">
+                        UPDATE
+                      </Button>
+                      <Button className="w-[110px] h-[33px] bg-[#D65A5A] text-[18px] text-[#0C092E] font-bold rounded-[25px]">
+                        REMOVE
+                      </Button>
+                    </div>
+                  </div>
+                </div> */}
+              </div>
+            </div>
+          </div>
+        ) : (
           <div className="flex flex-col items-center col-span-1 space-y-4">
             <h1 className="text-white text-[36px] font-bold mt-8">PURCHASED</h1>
             <DataTable columns={columns} data={data} />

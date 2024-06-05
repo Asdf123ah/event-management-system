@@ -1,9 +1,21 @@
 "use server";
-import { LoginFormFields, SignUpFormFields } from "@/types/types";
+import {
+  HostFormFields,
+  HostFormSchema,
+  LoginFormFields,
+  SignUpFormFields,
+} from "@/types/types";
 import { cookies } from "next/headers";
+import { z } from "zod";
 
 async function saveUserToCookie(user: any) {
   cookies().set("user", user);
+}
+
+async function getUserFromCookie() {
+  const cookieStore = cookies();
+  const user = cookieStore.get("user");
+  return user;
 }
 
 async function fetchUsers() {
@@ -77,4 +89,38 @@ export async function signInUser(data: LoginFormFields) {
 
 export async function signOutUser() {
   cookies().delete("user");
+}
+
+// Extended schema with additional fields
+/* export const ExtendedHostFormSchema = HostFormSchema.extend({
+  hostName: z.string().min(1),
+  imageSrc: z.string().url().optional(),
+});
+
+export type HostFormFields = z.infer<typeof ExtendedHostFormSchema>; */
+
+export async function hostEvent(data: HostFormFields) {
+  try {
+    /*  const res = await fetch("/api/upload", {
+      method: "POST",
+      body: data as any,
+    }); */
+    const getCookie: any = await getUserFromCookie();
+    /* console.log(test);
+    console.log(JSON.stringify(test)); */
+
+    const cookieObject = JSON.parse(getCookie.value);
+
+    const host = cookieObject.name;
+
+    const response = await fetch("http://localhost:5000/events", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...data, host }),
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }

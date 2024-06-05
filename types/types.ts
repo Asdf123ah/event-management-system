@@ -24,3 +24,14 @@ export const SignUpFormSchema = z.object({
 
 export type LoginFormFields = z.infer<typeof LoginFormSchema>;
 export type SignUpFormFields = z.infer<typeof SignUpFormSchema>;
+
+export const HostFormSchema = z.object({
+  eventName: z.string().min(1),
+  venue: z.string().min(1),
+  date: z.string().min(1),
+  time: z.string().min(1),
+  price: z.number().min(1),
+  imageFile: z.any(),
+});
+
+export type HostFormFields = z.infer<typeof HostFormSchema>;
