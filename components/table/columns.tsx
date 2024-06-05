@@ -3,6 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export type Payment = {
   name: any;
@@ -17,7 +18,7 @@ export type Payment = {
 
 export const columns: ColumnDef<Payment>[] = [
   {
-    accessorKey: "event",
+    accessorKey: "eventName",
     header: ({ column }) => {
       return (
         <Button
@@ -51,7 +52,15 @@ export const columns: ColumnDef<Payment>[] = [
     header: "Host",
   },
   {
-    accessorKey: "image",
+    accessorKey: "imagePath",
     header: "Image",
+    cell: ({ row }) => {
+      const format: string = row.getValue("imagePath");
+      return (
+        <>
+          <Image src={format} alt="Pic" height={100} width={100}/>
+        </>
+      );
+    },
   },
 ];

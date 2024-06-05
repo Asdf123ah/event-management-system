@@ -68,7 +68,7 @@ export function DataTable<TData, TValue>({
           <FaSearch className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-800" />
         </div>
       </div>
-      <div className="rounded-md border w-[90%] bg-white h-[315px] max-h-[315px]  overflow-y-auto">
+      <div className="rounded-md border w-[90%] bg-white h-[400px] max-h-[400px]  overflow-y-auto">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
