@@ -85,6 +85,9 @@ const SignUpForm = () => {
           placeholder="Enter your email"
           autoComplete="email"
         />
+        {errors.email && (
+          <div className="text-red-500">{errors.email.message}</div>
+        )}
         <Label
           className="block text-[#080067] text-lg font-bold mb-0"
           htmlFor="password"
@@ -98,6 +101,13 @@ const SignUpForm = () => {
           type="password"
           placeholder="Enter your password"
         />
+        {errors.password && (
+          <div className="text-xs text-red-500">
+            Password must be at least 8 characters long
+            <br /> Password must contain at least one uppercase letter
+            <br /> Password must contain at least one symbol
+          </div>
+        )}
 
         <Label
           className="block text-[#080067] text-lg font-bold mb-0"
@@ -112,6 +122,13 @@ const SignUpForm = () => {
           type="password"
           placeholder="Re-enter your password"
         />
+        {errors.password && (
+          <div className="text-xs text-red-500">
+            Password must be at least 8 characters long
+            <br /> Password must contain at least one uppercase letter
+            <br /> Password must contain at least one symbol
+          </div>
+        )}
         <div className="flex">
           <Button
             disabled={isSubmitting}

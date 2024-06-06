@@ -62,6 +62,9 @@ const LoginForm = () => {
           placeholder="Enter your email"
           autoComplete="email"
         />
+        {errors.email && (
+          <div className="text-red-500">{errors.email.message}</div>
+        )}
         <Label
           className="block text-[#080067] text-[21px] font-bold mb-0"
           htmlFor="password"
@@ -75,6 +78,13 @@ const LoginForm = () => {
           type={showPassword ? "text" : "password"}
           placeholder="Enter your password"
         />
+        {errors.password && (
+          <div className="text-xs text-red-500">
+            Password must be at least 8 characters long
+            <br /> Password must contain at least one uppercase letter
+            <br /> Password must contain at least one symbol
+          </div>
+        )}
         <div className="mb-24">
           <label className="flex items-center space-x-2 text-[#080067] text-[18px]">
             <input
